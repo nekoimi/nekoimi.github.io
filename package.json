@@ -1,0 +1,17 @@
+{
+  "name": "sakuraio-web",
+  "private": true,
+  "scripts": {
+    "dev:home": "pnpm --filter home dev",
+    "dev:docs": "pnpm --filter docs dev",
+    "dev:tools": "pnpm --filter tools dev",
+    "dev": "pnpm dev:home",
+    "build:home": "pnpm --filter home build",
+    "build:docs": "pnpm --filter docs build",
+    "build:tools": "pnpm --filter tools build",
+    "build": "pnpm build:home && pnpm build:docs && pnpm build:tools"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.3"
+  }
+}
