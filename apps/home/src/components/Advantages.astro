@@ -1,0 +1,40 @@
+---
+const advantages = [
+  {
+    title: '本地部署',
+    description: '支持私有化部署，数据安全可控，符合企业合规要求',
+    icon: '🔒',
+  },
+  {
+    title: '插件化架构',
+    description: '灵活的插件系统，可快速扩展新功能和自定义处理流程',
+    icon: '🧩',
+  },
+  {
+    title: '高性能处理',
+    description: '优化的处理引擎，支持大规模并发和批量处理',
+    icon: '⚡',
+  },
+];
+---
+
+<section id="advantages" class="py-20 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4">
+        <span class="gradient-text">技术优势</span>
+      </h2>
+      <p class="text-xl text-gray-600">强大的技术架构，确保稳定可靠</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {advantages.map(advantage => (
+        <div class="bg-white rounded-2xl p-8 text-center hover:shadow-lg hover:-translate-y-2 transition-all">
+          <div class="text-5xl mb-4">{advantage.icon}</div>
+          <h3 class="text-2xl font-bold mb-3 text-gray-900">{advantage.title}</h3>
+          <p class="text-gray-600">{advantage.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

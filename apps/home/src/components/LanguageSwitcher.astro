@@ -1,0 +1,32 @@
+---
+const { currentLocale, locales, t } = Astro.props;
+---
+
+<div class="relative group">
+  <button
+    class="flex items-center gap-2 px-3 py-2 text-sm text-gray-700 hover:text-primary transition-colors"
+    aria-label="Switch Language"
+  >
+    <span class="text-lg">{currentLocale === 'en' ? '🇺🇸' : '🇨🇳'}</span>
+    <span class="hidden md:inline">{currentLocale === 'en' ? 'English' : '中文'}</span>
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+    </svg>
+  </button>
+
+  <div class="absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+    {locales.map(locale => (
+      <a
+        href={`/${locale === 'en' ? '' : locale}/`}
+        class={`block px-4 py-2 text-sm transition-colors ${
+          locale === currentLocale
+            ? 'text-primary bg-indigo-50 font-medium'
+            : 'text-gray-700 hover:bg-gray-50'
+        }`}
+      >
+        <span class="mr-2">{locale === 'en' ? '🇺🇸' : '🇨🇳'}</span>
+        {locale === 'en' ? 'English' : '中文'}
+      </a>
+    ))}
+  </div>
+</div>

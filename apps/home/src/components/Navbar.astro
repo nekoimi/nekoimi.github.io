@@ -1,0 +1,83 @@
+---
+import { t, loadTranslation, getPathnameFromLocale, getLocaleFromPathname, type Locale } from '../i18n/translator';
+
+const locale = getLocaleFromPathname(Astro.url.pathname);
+const translationData = await loadTranslation(locale);
+
+const navLinks = [
+  { labelKey: 'nav.home', href: getPathnameFromLocale(locale, '/') },
+  { labelKey: 'nav.features', href: '#features' },
+  { labelKey: 'nav.tools', href: '#tools' },
+  { labelKey: 'nav.docs', href: getPathnameFromLocale(locale, '/docs') },
+  { labelKey: 'nav.pricing', href: '#pricing' },
+  { labelKey: 'nav.contact', href: '#contact' },
+];
+
+const switchLang = locale === 'en' ? 'Switch Language' : '切换语言';
+const ctaText = locale === 'en' ? 'Get Started' : '开始使用';
+---
+
+<nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <!-- Logo -->
+      <a href={getPathnameFromLocale(locale, '/')} class="flex items-center space-x-2">
+        <span class="text-2xl font-bold gradient-text">SynthWorks</span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center space-x-8">
+        {navLinks.map(link => (
+          <a href={link.href} class="text-gray-700 hover:text-primary transition-colors">
+            {t(translationData, link.labelKey)}
+          </a>
+        ))}
+      </div>
+
+      <!-- Language Switcher & CTA Button -->
+      <div class="hidden md:flex items-center space-x-4">
+        <div class="relative group">
+          <button
+            class="flex items-center gap-2 px-3 py-2 text-sm text-gray-700 hover:text-primary transition-colors"
+            aria-label="Switch Language"
+          >
+            <span class="text-lg">{locale === 'en' ? '🇺🇸' : '🇨🇳'}</span>
+            <span class="hidden md:inline">{locale === 'en' ? 'English' : '中文'}</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+
+          <div class="absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+            <a
+              href="/"
+              class="block px-4 py-2 text-sm transition-colors text-gray-700 hover:bg-gray-50"
+            >
+              <span class="mr-2">🇺🇸</span>English
+            </a>
+            <a
+              href="/zh/"
+              class="block px-4 py-2 text-sm transition-colors text-gray-700 hover:bg-gray-50"
+            >
+              <span class="mr-2">🇨🇳</span>中文
+            </a>
+          </div>
+        </div>
+
+        <a
+          href="#tools"
+          class="px-4 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:shadow-lg transition-all"
+        >
+          {ctaText}
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button class="md:hidden p-2" aria-label="Menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>

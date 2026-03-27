@@ -1,0 +1,61 @@
+---
+const tools = [
+  {
+    title: '换脸工具',
+    description: '上传两张图片，一键完成人脸替换',
+    tags: ['免费', '快速'],
+  },
+  {
+    title: '语音合成',
+    description: '输入文字，生成自然语音',
+    tags: ['多语言', '多音色'],
+  },
+  {
+    title: 'OCR 识别',
+    description: '图片转文字，支持批量处理',
+    tags: ['高精度', '多格式'],
+  },
+  {
+    title: '视频剪辑',
+    description: '智能剪辑，自动生成精彩片段',
+    tags: ['自动', '高效'],
+  },
+  {
+    title: '图片处理',
+    description: '压缩、裁剪、格式转换',
+    tags: ['批量', '云端'],
+  },
+  {
+    title: '字幕提取',
+    description: '视频自动提取字幕内容',
+    tags: ['智能', '准确'],
+  },
+];
+---
+
+<section id="tools" class="py-20 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4">
+        <span class="gradient-text">在线工具</span>
+      </h2>
+      <p class="text-xl text-gray-600">无需安装，即开即用的在线工具集合</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {tools.map(tool => (
+        <div class="bg-white rounded-2xl p-8 hover:shadow-lg hover:-translate-y-2 transition-all">
+          <h3 class="text-xl font-bold mb-3 text-gray-900">{tool.title}</h3>
+          <p class="text-gray-600 mb-4">{tool.description}</p>
+          <div class="flex gap-2">
+            {tool.tags.map(tag => (
+              <span class="px-3 py-1 bg-indigo-50 text-primary text-sm rounded-full">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

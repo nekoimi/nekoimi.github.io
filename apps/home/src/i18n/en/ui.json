@@ -1,0 +1,346 @@
+{
+  "nav": {
+    "home": "Home",
+    "features": "Features",
+    "tools": "Tools",
+    "docs": "Docs",
+    "pricing": "Pricing",
+    "contact": "Contact",
+    "cta": "Get Started",
+    "switch_lang": "Switch Language"
+  },
+  "hero": {
+    "title": "Transform Your Workflow",
+    "title_gradient": "with AI-Powered Automation",
+    "subtitle": "A comprehensive platform combining AI face swap, TTS synthesis, OCR text recognition, and video automation in one powerful solution",
+    "cta_primary": "Get Started Free",
+    "cta_secondary": "Learn More"
+  },
+  "stats": {
+    "tasks": "Tasks Processed",
+    "daily": "Daily Requests",
+    "users": "Active Users",
+    "uptime": "Uptime"
+  },
+  "features": {
+    "title": "Core Capabilities",
+    "subtitle": "Powerful AI algorithms delivering professional-grade automation",
+    "face_swap": {
+      "title": "AI Face Swap",
+      "desc": "Advanced deep learning-based face replacement with high-fidelity processing"
+    },
+    "tts": {
+      "title": "TTS Synthesis",
+      "desc": "Natural and smooth text-to-speech with multi-language and voice style support"
+    },
+    "ocr": {
+      "title": "OCR Recognition",
+      "desc": "High-precision text recognition supporting multiple languages and complex scenarios"
+    },
+    "video": {
+      "title": "Video Automation",
+      "desc": "Intelligent video processing including editing, transcoding, and compression"
+    }
+  },
+  "showcase": {
+    "title": "How It Works",
+    "subtitle": "Transform your content in just four simple steps",
+    "step1": {
+      "title": "Upload Your Content",
+      "desc": "Upload images, videos, or text files to our secure platform"
+    },
+    "step2": {
+      "title": "Select Processing Type",
+      "desc": "Choose from face swap, TTS, OCR, or video automation"
+    },
+    "step3": {
+      "title": "AI Processing",
+      "desc": "Our AI algorithms process your content quickly and accurately"
+    },
+    "step4": {
+      "title": "Download Results",
+      "desc": "Get your processed files instantly in high quality"
+    }
+  },
+  "tools": {
+    "title": "Explore Our Tools",
+    "subtitle": "No installation required - powerful tools ready to use in seconds",
+    "face_swap": {
+      "title": "Face Swap Tool",
+      "desc": "Upload two images and complete face replacement in one click",
+      "tag1": "Free",
+      "tag2": "Fast"
+    },
+    "voice": {
+      "title": "Voice Synthesis",
+      "desc": "Enter text and generate natural-sounding speech",
+      "tag1": "Multi-language",
+      "tag2": "Multiple Voices"
+    },
+    "ocr": {
+      "title": "OCR Recognition",
+      "desc": "Convert images to text with support for batch processing",
+      "tag1": "High Accuracy",
+      "tag2": "Multi-format"
+    },
+    "video_editing": {
+      "title": "Video Editing",
+      "desc": "Smart editing with automatic highlight generation",
+      "tag1": "Automated",
+      "tag2": "Efficient"
+    },
+    "image_processing": {
+      "title": "Image Processing",
+      "desc": "Compress, crop, and format conversion",
+      "tag1": "Batch",
+      "tag2": "Cloud-based"
+    },
+    "subtitle_extraction": {
+      "title": "Subtitle Extraction",
+      "desc": "Automatically extract subtitles from videos",
+      "tag1": "Smart",
+      "tag2": "Accurate"
+    },
+    "view_all": "View All Features"
+  },
+  "usecases": {
+    "title": "Use Cases",
+    "subtitle": "Powerful solutions for multiple industries and applications",
+    "short_video": {
+      "title": "Short Video Marketing",
+      "desc": "Generate high-quality marketing videos in bulk to boost brand awareness and engagement"
+    },
+    "automated_editing": {
+      "title": "Automated Editing",
+      "desc": "Intelligent highlight detection automatically generates edited versions of your content"
+    },
+    "digital_human": {
+      "title": "Digital Human Generation",
+      "desc": "Create virtual digital humans for various applications including presentations and entertainment"
+    },
+    "batch_processing": {
+      "title": "Batch Data Processing",
+      "desc": "Efficiently process large volumes of images, videos, and text data with parallel processing"
+    }
+  },
+  "testimonials": {
+    "title": "What Our Users Say",
+    "subtitle": "Join thousands of satisfied users who trust SynthWorks",
+    "user1": {
+      "name": "Sarah Chen",
+      "role": "Marketing Director",
+      "company": "TechCorp",
+      "content": "SynthWorks has transformed our video marketing workflow. The automation features save us hours every week."
+    },
+    "user2": {
+      "name": "Michael Rodriguez",
+      "role": "Content Creator",
+      "company": "Independent",
+      "content": "The face swap and video editing tools are incredibly powerful. Best I've used for content creation."
+    },
+    "user3": {
+      "name": "Emily Zhang",
+      "role": "Product Manager",
+      "company": "StartupXYZ",
+      "content": "Outstanding platform for processing large datasets. The OCR API is fast and accurate."
+    },
+    "share_experience": "Share Your Experience"
+  },
+  "footer": {
+    "description": "AI-powered automation platform delivering intelligent solutions for video processing, voice synthesis, OCR, and more.",
+    "product": "Product",
+    "company": "Company",
+    "support": "Support",
+    "product_features": "Features",
+    "pricing": "Pricing",
+    "documentation": "Documentation",
+    "api_reference": "API Reference",
+    "about": "About",
+    "blog": "Blog",
+    "careers": "Careers",
+    "help_center": "Help Center",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "status": "Status",
+    "copyright": "All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "cookies": "Cookie Policy"
+  },
+  "layout": {
+    "description": "SynthWorks - AI-Powered Automation Platform",
+    "keywords": "AI, automation, video processing, voice synthesis, OCR, face swap"
+  },
+  "legal": {
+    "privacy": {
+      "title": "Privacy Policy",
+      "intro": "At SynthWorks, we take your privacy seriously. This Privacy Policy explains how we collect, use, and protect your personal information.",
+      "collect_title": "Information We Collect",
+      "collect_intro": "We collect information you provide directly to us when you use our services, including:",
+      "collect_1": "Account information (name, email address)",
+      "collect_2": "Payment information (processed securely through third-party providers)",
+      "collect_3": "Usage data and analytics",
+      "collect_4": "Files and content you upload for processing",
+      "use_title": "How We Use Your Information",
+      "use_intro": "We use the collected information to:",
+      "use_1": "Provide and improve our services",
+      "use_2": "Process your requests and deliver results",
+      "use_3": "Communicate with you about your account",
+      "use_4": "Analyze usage patterns to enhance user experience",
+      "security_title": "Data Security",
+      "security_desc": "We implement industry-standard security measures to protect your information. Your uploaded files are encrypted and automatically deleted after processing is complete.",
+      "rights_title": "Your Rights",
+      "rights_intro": "You have the right to:",
+      "rights_1": "Access your personal information",
+      "rights_2": "Correct inaccurate information",
+      "rights_3": "Request deletion of your data",
+      "rights_4": "Opt-out of marketing communications",
+      "contact_title": "Contact Us",
+      "contact_desc": "If you have questions about this Privacy Policy or our data practices, please contact us at privacy@synthworks.com"
+    },
+    "terms": {
+      "title": "Terms of Service",
+      "intro": "Welcome to SynthWorks. By using our services, you agree to these Terms of Service.",
+      "acceptance_title": "Acceptance of Terms",
+      "acceptance_desc": "By accessing or using SynthWorks services, you agree to be bound by these Terms. If you disagree with any part of these terms, please do not use our services.",
+      "service_title": "Service Description",
+      "service_intro": "SynthWorks provides the following AI-powered automation services:",
+      "service_1": "AI Face Swap",
+      "service_2": "Text-to-Speech (TTS) Synthesis",
+      "service_3": "OCR Text Recognition",
+      "service_4": "Video Automation and Processing",
+      "service_5": "Image Processing Tools",
+      "user_title": "User Responsibilities",
+      "user_intro": "As a user of our services, you agree to:",
+      "user_1": "Use our services for lawful purposes only",
+      "user_2": "Not attempt to reverse engineer or circumvent security measures",
+      "user_3": "Respect intellectual property rights of others",
+      "user_4": "Not upload content that violates applicable laws or regulations",
+      "user_5": "Maintain security of your account credentials",
+      "ip_title": "Intellectual Property",
+      "ip_desc": "All content, features, and functionality of SynthWorks are owned by SynthWorks and protected by intellectual property laws. You retain ownership of content you upload, but grant us a license to process it.",
+      "liability_title": "Limitation of Liability",
+      "liability_desc": "SynthWorks is provided \"as is\" without warranties of any kind. We shall not be liable for any indirect, incidental, special, or consequential damages.",
+      "termination_title": "Termination",
+      "termination_desc": "We reserve the right to terminate or suspend your account at any time for violation of these Terms or for any other reason at our sole discretion.",
+      "changes_title": "Changes to Terms",
+      "changes_desc": "We may update these Terms from time to time. Continued use of the service after changes constitutes acceptance of the new Terms."
+    },
+    "cookies": {
+      "title": "Cookie Policy",
+      "intro": "This Cookie Policy explains how SynthWorks uses cookies and similar technologies to enhance your experience on our platform.",
+      "what_title": "What Are Cookies?",
+      "what_desc": "Cookies are small text files stored on your device when you visit a website. They help us remember your preferences and improve your browsing experience.",
+      "types_title": "Types of Cookies We Use",
+      "essential_title": "Essential Cookies",
+      "essential_intro": "These cookies are necessary for the website to function properly:",
+      "essential_1": "Authentication and session management",
+      "essential_2": "Security and fraud prevention",
+      "essential_3": "Basic functionality (forms, navigation)",
+      "analytical_title": "Analytical Cookies",
+      "analytical_intro": "These cookies help us understand how visitors use our website:",
+      "analytical_1": "Page views and user sessions",
+      "analytical_2": "Performance monitoring",
+      "analytical_3": "Error tracking",
+      "preference_title": "Preference Cookies",
+      "preference_desc": "These cookies remember your settings and preferences, such as language selection and theme preferences.",
+      "third_title": "Third-Party Cookies",
+      "third_desc": "We may use third-party services (like analytics tools) that set their own cookies. These are subject to the respective third-party's privacy policies.",
+      "manage_title": "Managing Your Cookie Preferences",
+      "manage_intro": "You can control cookies through your browser settings:",
+      "manage_1": "Accept or reject cookies",
+      "manage_2": "Delete existing cookies",
+      "manage_3": "Set notifications for when cookies are set",
+      "manage_note": "Note that disabling certain cookies may affect website functionality and your user experience.",
+      "updates_title": "Updates to This Policy",
+      "updates_desc": "We may update this Cookie Policy from time to time. We encourage you to review this policy periodically to stay informed about how we use cookies."
+    },
+    "last_updated": "Last updated: March 2026"
+  },
+  "legal": {
+    "privacy": {
+      "title": "Privacy Policy",
+      "intro": "At SynthWorks, we take your privacy seriously. This Privacy Policy explains how we collect, use, and protect your personal information.",
+      "collect_title": "Information We Collect",
+      "collect_intro": "We collect information you provide directly to us when you use our services, including:",
+      "collect_1": "Account information (name, email address)",
+      "collect_2": "Payment information (processed securely through third-party providers)",
+      "collect_3": "Usage data and analytics",
+      "collect_4": "Files and content you upload for processing",
+      "use_title": "How We Use Your Information",
+      "use_intro": "We use the collected information to:",
+      "use_1": "Provide and improve our services",
+      "use_2": "Process your requests and deliver results",
+      "use_3": "Communicate with you about your account",
+      "use_4": "Analyze usage patterns to enhance user experience",
+      "security_title": "Data Security",
+      "security_desc": "We implement industry-standard security measures to protect your information. Your uploaded files are encrypted and automatically deleted after processing is complete.",
+      "rights_title": "Your Rights",
+      "rights_intro": "You have the right to:",
+      "rights_1": "Access your personal information",
+      "rights_2": "Correct inaccurate information",
+      "rights_3": "Request deletion of your data",
+      "rights_4": "Opt-out of marketing communications",
+      "contact_title": "Contact Us",
+      "contact_desc": "If you have questions about this Privacy Policy or our data practices, please contact us at privacy@synthworks.com"
+    },
+    "terms": {
+      "title": "Terms of Service",
+      "intro": "Welcome to SynthWorks. By using our services, you agree to these Terms of Service.",
+      "acceptance_title": "Acceptance of Terms",
+      "acceptance_desc": "By accessing or using SynthWorks services, you agree to be bound by these Terms. If you disagree with any part of these terms, please do not use our services.",
+      "service_title": "Service Description",
+      "service_intro": "SynthWorks provides the following AI-powered automation services:",
+      "service_1": "AI Face Swap",
+      "service_2": "Text-to-Speech (TTS) Synthesis",
+      "service_3": "OCR Text Recognition",
+      "service_4": "Video Automation and Processing",
+      "service_5": "Image Processing Tools",
+      "user_title": "User Responsibilities",
+      "user_intro": "As a user of our services, you agree to:",
+      "user_1": "Use our services for lawful purposes only",
+      "user_2": "Not attempt to reverse engineer or circumvent security measures",
+      "user_3": "Respect intellectual property rights of others",
+      "user_4": "Not upload content that violates applicable laws or regulations",
+      "user_5": "Maintain the security of your account credentials",
+      "ip_title": "Intellectual Property",
+      "ip_desc": "All content, features, and functionality of SynthWorks are owned by SynthWorks and protected by intellectual property laws. You retain ownership of content you upload, but grant us a license to process it.",
+      "liability_title": "Limitation of Liability",
+      "liability_desc": "SynthWorks is provided \"as is\" without warranties of any kind. We shall not be liable for any indirect, incidental, special, or consequential damages.",
+      "termination_title": "Termination",
+      "termination_desc": "We reserve the right to terminate or suspend your account at any time for violation of these Terms or for any other reason at our sole discretion.",
+      "changes_title": "Changes to Terms",
+      "changes_desc": "We may update these Terms from time to time. Continued use of the service after changes constitutes acceptance of the new Terms."
+    },
+    "cookies": {
+      "title": "Cookie Policy",
+      "intro": "This Cookie Policy explains how SynthWorks uses cookies and similar technologies to enhance your experience on our platform.",
+      "what_title": "What Are Cookies?",
+      "what_desc": "Cookies are small text files stored on your device when you visit a website. They help us remember your preferences and improve your browsing experience.",
+      "types_title": "Types of Cookies We Use",
+      "essential_title": "Essential Cookies",
+      "essential_intro": "These cookies are necessary for the website to function properly:",
+      "essential_1": "Authentication and session management",
+      "essential_2": "Security and fraud prevention",
+      "essential_3": "Basic functionality (forms, navigation)",
+      "analytical_title": "Analytical Cookies",
+      "analytical_intro": "These cookies help us understand how visitors use our website:",
+      "analytical_1": "Page views and user sessions",
+      "analytical_2": "Performance monitoring",
+      "analytical_3": "Error tracking",
+      "preference_title": "Preference Cookies",
+      "preference_desc": "These cookies remember your settings and preferences, such as language selection and theme preferences.",
+      "third_title": "Third-Party Cookies",
+      "third_desc": "We may use third-party services (like analytics tools) that set their own cookies. These are subject to the respective third-party's privacy policies.",
+      "manage_title": "Managing Your Cookie Preferences",
+      "manage_intro": "You can control cookies through your browser settings:",
+      "manage_1": "Accept or reject cookies",
+      "manage_2": "Delete existing cookies",
+      "manage_3": "Set notifications for when cookies are set",
+      "manage_note": "Note that disabling certain cookies may affect website functionality and your user experience.",
+      "updates_title": "Updates to This Policy",
+      "updates_desc": "We may update this Cookie Policy from time to time. We encourage you to review this policy periodically to stay informed about how we use cookies."
+    },
+    "last_updated": "Last updated: March 2026"
+  }
+}

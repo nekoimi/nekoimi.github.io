@@ -1,0 +1,73 @@
+---
+import { t, loadTranslation, getLocaleFromPathname, getPathnameFromLocale } from '../i18n/translator';
+
+const locale = getLocaleFromPathname(Astro.url.pathname);
+const translationData = await loadTranslation(locale);
+const title = t(translationData, 'footer.terms') || 'Terms of Service';
+---
+
+<Layout title={title}>
+  <Navbar />
+  <section class="pt-32 pb-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl md:text-5xl font-bold mb-8">
+        <span class="gradient-text">{title}</span>
+      </h1>
+      <div class="prose prose prose-lg prose-gray">
+        <p class="text-xl text-gray-600 mb-6">
+          Welcome to SynthWorks. By using our services, you agree to these Terms of Service.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">Acceptance of Terms</h2>
+        <p class="text-gray-600 mb-6">
+          By accessing or using SynthWorks services, you agree to be bound by these Terms. If you disagree with any part of these terms, please do not use our services.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">Service Description</h2>
+        <p class="text-gray-600 mb-4">SynthWorks provides the following AI-powered automation services:</p>
+        <ul class="list-disc pl-6 text-gray-600 mb-6 space-y-2">
+          <li>AI Face Swap</li>
+          <li>Text-to-Speech (TTS) Synthesis</li>
+          <li>OCR Text Recognition</li>
+          <li>Video Automation and Processing</li>
+          <li>Image Processing Tools</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">User Responsibilities</h2>
+        <p class="text-gray-600 mb-4">As a user of our services, you agree to:</p>
+        <ul class="list-disc pl-6 text-gray-600 mb-6 space-y-2">
+          <li>Use our services for lawful purposes only</li>
+          <li>Not attempt to reverse engineer or circumvent security measures</li>
+          <li>Respect intellectual property rights of others</li>
+          <li>Not upload content that violates applicable laws or regulations</li>
+          <li>Maintain the security of your account credentials</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">Intellectual Property</h2>
+        <p class="text-gray-600 mb-6">
+          All content, features, and functionality of SynthWorks are owned by SynthWorks and protected by intellectual property laws. You retain ownership of content you upload, but grant us a license to process it.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">Limitation of Liability</h2>
+        <p class="text-gray-600 mb-6">
+          SynthWorks is provided "as is" without warranties of any kind. We shall not be liable for any indirect, incidental, special, or consequential damages.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">Termination</h2>
+        <p class="text-gray-600 mb-6">
+          We reserve the right to terminate or suspend your account at any time for violation of these Terms or for any other reason at our sole discretion.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">Changes to Terms</h2>
+        <p class="text-gray-600 mb-6">
+          We may update these Terms from time to time. Continued use of the service after changes constitutes acceptance of the new Terms.
+        </p>
+
+        <p class="text-sm text-gray-500">
+          Last updated: March 2026
+        </p>
+      </div>
+    </div>
+  </section>
+  <Footer />
+</Layout>

@@ -1,0 +1,68 @@
+---
+import { t, loadTranslation, getLocaleFromPathname } from '../i18n/translator';
+
+const locale = getLocaleFromPathname(Astro.url.pathname);
+const translationData = await loadTranslation(locale);
+
+const steps = [
+  {
+    number: '01',
+    titleKey: 'showcase.step1.title',
+    descKey: 'showcase.step1.desc',
+    icon: '📤',
+  },
+  {
+    number: '02',
+    titleKey: 'showcase.step2.title',
+    descKey: 'showcase.step2.desc',
+    icon: '⚙️',
+  },
+  {
+    number: '03',
+    titleKey: 'showcase.step3.title',
+    descKey: 'showcase.step3.desc',
+    icon: '🤖',
+  },
+  {
+    number: '04',
+    titleKey: 'showcase.step4.title',
+    descKey: 'showcase.step4.desc',
+    icon: '✓',
+  },
+];
+---
+
+<section id="showcase" class="py-24 bg-gradient-to-br from-indigo-50 via-white to-purple-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4">
+        <span class="gradient-text">{t(translationData, 'showcase.title')}</span>
+      </h2>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+        {t(translationData, 'showcase.subtitle')}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {steps.map((step, index) => (
+        <div class="relative">
+          <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100 h-full">
+            <div class="text-5xl mb-4">{step.icon}</div>
+            <div class="text-sm text-gray-400 font-mono mb-2">{step.number}</div>
+            <h3 class="text-xl font-bold mb-3 text-gray-900">{t(translationData, step.titleKey)}</h3>
+            <p class="text-gray-600 leading-relaxed">{t(translationData, step.descKey)}</p>
+          </div>
+          {index < 3 && (
+            <div class="hidden lg:flex absolute top-1/2 -right-4 transform -translate-y-1/2 z-10">
+              <div class="bg-gradient-to-r from-primary to-secondary text-white w-8 h-8 rounded-full flex items-center justify-center shadow-md">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

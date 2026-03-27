@@ -1,0 +1,260 @@
+{
+  "nav": {
+    "home": "首页",
+    "features": "功能",
+    "tools": "工具",
+    "docs": "文档",
+    "pricing": "定价",
+    "contact": "联系",
+    "cta": "开始使用",
+    "switch_lang": "切换语言"
+  },
+  "hero": {
+    "title": "改变您的工作方式",
+    "title_gradient": "使用 AI 驱动的自动化",
+    "subtitle": "集成 AI 换脸、TTS 语音合成、OCR 文字识别和视频自动化的综合性平台",
+    "cta_primary": "免费开始",
+    "cta_secondary": "了解更多"
+  },
+  "stats": {
+    "tasks": "已处理任务",
+    "daily": "每日请求",
+    "users": "活跃用户",
+    "uptime": "正常运行时间"
+  },
+  "features": {
+    "title": "核心能力",
+    "subtitle": "专业级 AI 算法提供强大自动化支持",
+    "face_swap": {
+      "title": "AI 换脸",
+      "desc": "基于深度学习的高精度人脸替换技术"
+    },
+    "tts": {
+      "title": "TTS 语音合成",
+      "desc": "自然流畅的文字转语音，支持多种语言和音色"
+    },
+    "ocr": {
+      "title": "OCR 文字识别",
+      "desc": "高精度文字识别，支持多语言和复杂场景"
+    },
+    "video": {
+      "title": "视频自动化",
+      "desc": "智能视频处理，包括剪辑、转码和压缩"
+    }
+  },
+  "showcase": {
+    "title": "使用流程",
+    "subtitle": "只需四个简单步骤即可完成内容转换",
+    "step1": {
+      "title": "上传内容",
+      "desc": "上传图片、视频或文本文件到我们的安全平台"
+    },
+    "step2": {
+      "title": "选择处理类型",
+      "desc": "选择换脸、TTS、OCR 或视频自动化"
+    },
+    "step3": {
+      "title": "AI 处理",
+      "desc": "我们的 AI 算法快速准确地处理您的内容"
+    },
+    "step4": {
+      "title": "下载结果",
+      "desc": "即时获取高质量的处理结果文件"
+    }
+  },
+  "tools": {
+    "title": "探索我们的工具",
+    "subtitle": "无需安装 - 秒级启动的强大工具",
+    "face_swap": {
+      "title": "换脸工具",
+      "desc": "上传两张图片，一键完成人脸替换",
+      "tag1": "免费",
+      "tag2": "快速"
+    },
+    "voice": {
+      "title": "语音合成",
+      "desc": "输入文字，生成自然的语音",
+      "tag1": "多语言",
+      "tag2": "多种音色"
+    },
+    "ocr": {
+      "title": "OCR 文字识别",
+      "desc": "将图片转换为文字，支持批量处理",
+      "tag1": "高精度",
+      "tag2": "多格式"
+    },
+    "video_editing": {
+      "title": "视频编辑",
+      "desc": "智能编辑，自动生成精彩片段",
+      "tag1": "自动化",
+      "tag2": "高效"
+    },
+    "image_processing": {
+      "title": "图片处理",
+      "desc": "压缩、裁剪和格式转换",
+      "tag1": "批量",
+      "tag2": "云端"
+    },
+    "subtitle_extraction": {
+      "title": "字幕提取",
+      "desc": "自动从视频中提取字幕",
+      "tag1": "智能",
+      "tag2": "精准"
+    },
+    "view_all": "查看所有功能"
+  },
+  "usecases": {
+    "title": "使用场景",
+    "subtitle": "为多个行业和应用提供强大解决方案",
+    "short_video": {
+      "title": "短视频营销",
+      "desc": "批量生成高质量营销视频，提升品牌知名度和互动"
+    },
+    "automated_editing": {
+      "title": "自动化编辑",
+      "desc": "智能亮点检测自动生成内容剪辑版本"
+    },
+    "digital_human": {
+      "title": "数字人生成",
+      "desc": "创建虚拟数字人，用于演示和娱乐等多种场景"
+    },
+    "batch_processing": {
+      "title": "批量数据处理",
+      "desc": "高效处理大量图片、视频和文本数据"
+    }
+  },
+  "testimonials": {
+    "title": "用户评价",
+    "subtitle": "加入数千名信赖 SynthWorks 的满意用户",
+    "user1": {
+      "name": "Sarah Chen",
+      "role": "市场总监",
+      "company": "TechCorp",
+      "content": "SynthWorks 彻底改变了我们的视频营销工作流程。自动化功能每周为我们节省数小时。"
+    },
+    "user2": {
+      "name": "Michael Rodriguez",
+      "role": "内容创作者",
+      "company": "独立",
+      "content": "换脸和视频编辑工具非常强大。这是我使用过的最好的内容创作工具。"
+    },
+    "user3": {
+      "name": "Emily Zhang",
+      "role": "产品经理",
+      "company": "StartupXYZ",
+      "content": "处理大数据集的卓越平台。OCR API 快速且准确。"
+    },
+    "share_experience": "分享您的体验"
+  },
+  "footer": {
+    "description": "AI 驱动的自动化平台，为视频处理、语音合成、OCR 等提供智能解决方案。",
+    "product": "产品",
+    "company": "公司",
+    "support": "支持",
+    "product_features": "功能",
+    "pricing": "定价",
+    "documentation": "文档",
+    "api_reference": "API 参考",
+    "about": "关于",
+    "blog": "博客",
+    "careers": "招聘",
+    "help_center": "帮助中心",
+    "faq": "常见问题",
+    "contact": "联系",
+    "status": "状态",
+    "copyright": "版权所有",
+    "privacy": "隐私政策",
+    "terms": "服务条款",
+    "cookies": "Cookie 政策"
+  },
+  "layout": {
+    "description": "SynthWorks - AI 自动化工具平台",
+    "keywords": "AI, 自动化, 视频处理, 语音合成, OCR, 换脸"
+  },
+  "legal": {
+    "privacy": {
+      "title": "隐私政策",
+      "intro": "在 SynthWorks，我们非常重视您的隐私。本隐私政策说明了我们如何收集、使用和保护您的个人信息。",
+      "collect_title": "我们收集的信息",
+      "collect_intro": "我们收集您在使用服务时直接提供的信息，包括：",
+      "collect_1": "账户信息（姓名、电子邮件地址）",
+      "collect_2": "付款信息（通过第三方服务提供商安全处理）",
+      "collect_3": "使用数据和分析信息",
+      "collect_4": "您上传用于处理的文件和内容",
+      "use_title": "我们如何使用您的信息",
+      "use_intro": "我们将收集的信息用于：",
+      "use_1": "提供和改进我们的服务",
+      "use_2": "处理您的请求并交付结果",
+      "use_3": "与您沟通有关您账户的信息",
+      "use_4": "分析使用模式以增强用户体验",
+      "security_title": "数据安全",
+      "security_desc": "我们实施行业标准的安全措施来保护您的信息。您上传的文件会被加密，并在处理完成后自动删除。",
+      "rights_title": "您的权利",
+      "rights_intro": "您有权：",
+      "rights_1": "访问您的个人信息",
+      "rights_2": "更正不准确的信息",
+      "rights_3": "请求删除您的数据",
+      "rights_4": "选择退出营销通信",
+      "contact_title": "联系我们",
+      "contact_desc": "如果您对本隐私政策或我们的数据做法有疑问，请通过 privacy@synthworks.com 联系我们"
+    },
+    "terms": {
+      "title": "服务条款",
+      "intro": "欢迎使用 SynthWorks。通过使用我们的服务，您同意以下服务条款。",
+      "acceptance_title": "接受条款",
+      "acceptance_desc": "通过访问或使用 SynthWorks 服务，您同意受这些条款约束。如果您不同意这些条款的任何部分，请勿使用我们的服务。",
+      "service_title": "服务描述",
+      "service_intro": "SynthWorks 提供以下 AI 驱动的自动化服务：",
+      "service_1": "AI 换脸",
+      "service_2": "文字转语音 (TTS) 合成",
+      "service_3": "OCR 文字识别",
+      "service_4": "视频自动化和处理",
+      "service_5": "图片处理工具",
+      "user_title": "用户责任",
+      "user_intro": "作为我们服务的用户，您同意：",
+      "user_1": "仅将我们的服务用于合法目的",
+      "user_2": "不尝试逆向工程或绕过安全措施",
+      "user_3": "尊重他人的知识产权",
+      "user_4": "不上传违反适用法律或法规的内容",
+      "user_5": "维护您账户凭据的安全",
+      "ip_title": "知识产权",
+      "ip_desc": "SynthWorks 的所有内容、功能和功能均归 SynthWorks 所有，并受知识产权法保护。您保留上传内容的所有权，但授予我们处理该内容的许可。",
+      "liability_title": "责任限制",
+      "liability_desc": "SynthWorks 按原样提供，不附带任何形式的保证。对于任何间接、偶然、特殊或后果性损害，我们概不负责。",
+      "termination_title": "终止",
+      "termination_desc": "我们保留随时因违反这些条款或出于我们唯一认为合适的任何其他原因终止或暂停您账户的权利。",
+      "changes_title": "条款变更",
+      "changes_desc": "我们可能会不时更新这些条款。更改后继续使用服务即表示接受新条款。"
+    },
+    "cookies": {
+      "title": "Cookie 政策",
+      "intro": "本 Cookie 政策说明了 SynthWorks 如何使用 Cookie 和类似技术来增强您在我们平台上的体验。",
+      "what_title": "什么是 Cookie？",
+      "what_desc": "Cookie 是当您访问网站时存储在设备上的小文本文件。它们帮助我们记住您的偏好设置并改善您的浏览体验。",
+      "types_title": "我们使用的 Cookie 类型",
+      "essential_title": "必要 Cookie",
+      "essential_intro": "这些 Cookie 对于网站正常运行是必要的：",
+      "essential_1": "身份验证和会话管理",
+      "essential_2": "安全和欺诈防护",
+      "essential_3": "基本功能（表单、导航）",
+      "analytical_title": "分析 Cookie",
+      "analytical_intro": "这些 Cookie 帮助我们了解访客如何使用我们的网站：",
+      "analytical_1": "页面浏览量和用户会话",
+      "analytical_2": "性能监控",
+      "analytical_3": "错误跟踪",
+      "preference_title": "偏好设置 Cookie",
+      "preference_desc": "这些 Cookie 记住您的设置和偏好，例如语言选择和主题喜好。",
+      "third_title": "第三方 Cookie",
+      "third_desc": "我们可能会使用第三方服务（如分析工具），这些服务设置自己的 Cookie。这些 Cookie 受各自第三方的隐私政策约束。",
+      "manage_title": "管理您的 Cookie 偏好",
+      "manage_intro": "您可以通过浏览器设置控制 Cookie：",
+      "manage_1": "接受或拒绝 Cookie",
+      "manage_2": "删除现有 Cookie",
+      "manage_3": "设置设置 Cookie 时的通知",
+      "manage_note": "请注意，禁用某些 Cookie 可能会影响网站功能并影响您的用户体验。",
+      "updates_title": "本政策更新",
+      "updates_desc": "我们可能会不时更新本 Cookie 政策。我们建议您定期查看本政策，以了解我们如何使用 Cookie。"
+    },
+    "last_updated": "最后更新：2026年3月"
+  }
+}

@@ -1,0 +1,77 @@
+---
+import { t, loadTranslation, getLocaleFromPathname, getPathnameFromLocale } from '../i18n/translator';
+
+const locale = getLocaleFromPathname(Astro.url.pathname);
+const translationData = await loadTranslation(locale);
+const title = t(translationData, 'footer.cookies') || 'Cookie Policy';
+---
+
+<Layout title={title}>
+  <Navbar />
+  <section class="pt-32 pb-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl md:text-5xl font-bold mb-8">
+        <span class="gradient-text">{title}</span>
+      </h1>
+      <div class="prose prose prose-lg prose-gray">
+        <p class="text-xl text-gray-600 mb-6">
+          This Cookie Policy explains how SynthWorks uses cookies and similar technologies to enhance your experience on our platform.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">What Are Cookies?</h2>
+        <p class="text-gray-600 mb-6">
+          Cookies are small text files stored on your device when you visit a website. They help us remember your preferences and improve your browsing experience.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">Types of Cookies We Use</h2>
+
+        <h3 class="text-xl font-semibold mt-6 mb-3">Essential Cookies</h3>
+        <p class="text-gray-600 mb-4">These cookies are necessary for the website to function properly:</p>
+        <ul class="list-disc pl-6 text-gray-600 mb-6 space-y-2">
+          <li>Authentication and session management</li>
+          <li>Security and fraud prevention</li>
+          <li>Basic functionality (forms, navigation)</li>
+        </ul>
+
+        <h3 class="text-xl font-semibold mt-6 mb-3">Analytical Cookies</h3>
+        <p class="text-gray-600 mb-4">These cookies help us understand how visitors use our website:</p>
+        <ul class="list-disc pl-6 text-gray-600 mb-6 space-y-2">
+          <li>Page views and user sessions</li>
+          <li>Performance monitoring</li>
+          <li>Error tracking</li>
+        </ul>
+
+        <h3 class="text-xl font-semibold mt-6 mb-3">Preference Cookies</h3>
+        <p class="text-gray-600 mb-6">
+          These cookies remember your settings and preferences, such as language selection and theme preferences.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">Third-Party Cookies</h2>
+        <p class="text-gray-600 mb-6">
+          We may use third-party services (like analytics tools) that set their own cookies. These are subject to the respective third-party's privacy policies.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">Managing Your Cookie Preferences</h2>
+        <p class="text-gray-600 mb-4">You can control cookies through your browser settings:</p>
+        <ul class="list-disc pl-6 text-gray-600 mb-6 space-y-2">
+          <li>Accept or reject cookies</li>
+          <li>Delete existing cookies</li>
+          <li>Set notifications for when cookies are set</li>
+        </ul>
+        <p class="text-gray-600 mb-6">
+          Note that disabling certain cookies may affect website functionality and your user experience.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">Updates to This Policy</h2>
+        <p class="text-gray-600 mb-6">
+          We may update this Cookie Policy from time to time. We encourage you to review this policy periodically to stay informed about how we use cookies.
+        </p>
+
+        <p class="text-sm text-gray-500">
+          Last updated: March 2026
+        </p>
+      </div>
+    </div>
+  </section>
+  <Footer />
+</Layout>

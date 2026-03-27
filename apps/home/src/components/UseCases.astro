@@ -1,0 +1,52 @@
+---
+import { t, loadTranslation, getLocaleFromPathname } from '../i18n/translator';
+
+const locale = getLocaleFromPathname(Astro.url.pathname);
+const translationData = await loadTranslation(locale);
+
+const useCases = [
+  {
+    titleKey: 'usecases.short_video.title',
+    descKey: 'usecases.short_video.desc',
+    icon: '📱',
+  },
+  {
+    titleKey: 'usecases.automated_editing.title',
+    descKey: 'usecases.automated_editing.desc',
+    icon: '✂️',
+  },
+  {
+    titleKey: 'usecases.digital_human.title',
+    descKey: 'usecases.digital_human.desc',
+    icon: '🤖',
+  },
+  {
+    titleKey: 'usecases.batch_processing.title',
+    descKey: 'usecases.batch_processing.desc',
+    icon: '📊',
+  },
+];
+---
+
+<section id="usecases" class="py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4">
+        <span class="gradient-text">{t(translationData, 'usecases.title')}</span>
+      </h2>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+        {t(translationData, 'usecases.subtitle')}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {useCases.map(useCase => (
+        <div class="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-indigo-100">
+          <div class="text-5xl mb-4">{useCase.icon}</div>
+          <h3 class="text-2xl font-bold mb-3 text-gray-900">{t(translationData, useCase.titleKey)}</h3>
+          <p class="text-gray-600 leading-relaxed">{t(translationData, useCase.descKey)}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

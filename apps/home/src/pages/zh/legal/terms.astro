@@ -1,0 +1,73 @@
+---
+import { t, loadTranslation, getLocaleFromPathname, getPathnameFromLocale } from '../../../i18n/translator';
+
+const locale = getLocaleFromPathname(Astro.url.pathname);
+const translationData = await loadTranslation(locale);
+const title = t(translationData, 'footer.terms') || '服务条款';
+---
+
+<Layout title={title}>
+  <Navbar />
+  <section class="pt-32 pb-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl md:text-5xl font-bold mb-8">
+        <span class="gradient-text">{title}</span>
+      </h1>
+      <div class="prose prose-lg prose-gray">
+        <p class="text-xl text-gray-600 mb-6">
+          欢迎使用 SynthWorks。通过使用我们的服务，您同意以下服务条款。
+        </p>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">接受条款</h2>
+        <p class="text-gray-600 mb-6">
+          通过访问或使用 SynthWorks 服务，您同意受这些条款约束。如果您不同意这些条款的任何部分，请勿使用我们的服务。
+        </p>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">服务描述</h2>
+        <p class="text-gray-600 mb-4">SynthWorks 提供以下 AI 驱动的自动化服务：</p>
+        <ul class="list-disc pl-6 text-gray-600 mb-6 space-y-2">
+          <li>AI 换脸</li>
+          <li>文字转语音 (TTS) 合成</li>
+          <li>OCR 文字识别</li>
+          <li>视频自动化和处理</li>
+          <li>图片处理工具</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">用户责任</h2>
+        <p class="text-gray-600 mb-4">作为我们服务的用户，您同意：</p>
+        <ul class="list-disc pl-6 text-gray-600 mb-6 space-y-2">
+          <li>仅将我们的服务用于合法目的</li>
+          <li>不尝试逆向工程或绕过安全措施</li>
+          <li>尊重他人的知识产权</li>
+          <li>不上传违反适用法律或法规的内容</li>
+          <li>维护您账户凭据的安全</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">知识产权</h2>
+        <p class="text-gray-600 mb-6">
+          SynthWorks 的所有内容、功能和功能均归 SynthWorks 所有，并受知识产权法保护。您保留上传内容的所有权，但授予我们处理该内容的许可。
+        </p>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">责任限制</h2>
+        <p class="text-gray-600 mb-6">
+          SynthWorks 按�原样提供，不附带任何形式的保证。对于任何间接、偶然、特殊或后果性损害，我们概不负责。
+        </p>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">终止</h2>
+        <p class="text-gray-600 mb-6">
+          我们保留随时因违反这些条款或出于我们唯一认为合适的任何其他原因终止或暂停您账户的权利。
+        </p>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">条款变更</h2>
+        <p class="text-gray-600 mb-6">
+          我们可能会不时更新这些条款。更改后继续使用服务即表示接受新条款。
+        </p>
+
+        <p class="text-sm text-gray-500">
+          最后更新：2026年3月
+        </p>
+      </div>
+    </div>
+  </section>
+  <Footer />
+</Layout>

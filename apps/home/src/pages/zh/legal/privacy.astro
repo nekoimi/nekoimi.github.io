@@ -1,0 +1,65 @@
+---
+import { t, loadTranslation, getLocaleFromPathname, getPathnameFromLocale } from '../../../i18n/translator';
+
+const locale = getLocaleFromPathname(Astro.url.pathname);
+const translationData = await loadTranslation(locale);
+const title = t(translationData, 'footer.privacy') || 'Privacy Policy';
+---
+
+<Layout title={title}>
+  <Navbar />
+  <section class="pt-32 pb-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl md:text-5xl font-bold mb-8">
+        <span class="gradient-text">{title}</span>
+      </h1>
+      <div class="prose prose-lg prose-gray">
+        <p class="text-xl text-gray-600 mb-6">
+          在 SynthWorks，我们非常重视您的隐私。本隐私政策说明了我们如何收集、使用和保护您的个人信息。
+        </p>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">我们收集的信息</h2>
+        <p class="text-gray-600 mb-4">我们收集您在使用服务时直接提供的信息，包括：</p>
+        <ul class="list-disc pl-6 text-gray-600 mb-6 space-y-2">
+          <li>账户信息（姓名、电子邮件地址）</li>
+          <li>付款信息（通过第三方服务提供商安全处理）</li>
+          <li>使用数据和分析信息</li>
+          <li>您上传用于处理的文件和内容</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">我们如何使用您的信息</h2>
+        <p class="text-gray-600 mb-4">我们将收集的信息用于：</p>
+        <ul class="list-disc pl-6 text-gray-600 mb-6 space-y-2">
+          <li>提供和改进我们的服务</li>
+          <li>处理您的请求并交付结果</li>
+          <li>与您沟通有关您账户的信息</li>
+          <li>分析使用模式以增强用户体验</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">数据安全</h2>
+        <p class="text-gray-600 mb-6">
+          我们实施行业标准的安全措施来保护您的信息。您上传的文件会被加密，并在处理完成后自动删除。
+        </p>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">您的权利</h2>
+        <p class="text-gray-600 mb-4">您有权：</p>
+        <ul class="list-disc pl-6 text-gray-600 mb-6 space-y-2">
+          <li>访问您的个人信息</li>
+          <li>更正不准确的信息</li>
+          <li>请求删除您的数据</li>
+          <li>选择退出营销通信</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">联系我们</h2>
+        <p class="text-gray-600 mb-6">
+          如果您对本隐私政策或我们的数据做法有疑问，请通过 privacy@synthworks.com 联系我们
+        </p>
+
+        <p class="text-sm text-gray-500">
+          最后更新：2026年3月
+        </p>
+      </div>
+    </div>
+  </section>
+  <Footer />
+</Layout>
