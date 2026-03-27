@@ -3,6 +3,9 @@ title: 'Complete Guide to Text-to-Speech: From Basics to Advanced'
 date: 2026-03-15
 description: 'Learn everything about modern TTS technology, including voice selection, styling, and practical applications.'
 tags: ['tutorial', 'TTS', 'AI']
+image: '/images/blog/tts-guide.jpg'
+readingTime: 12
+featured: false
 ---
 
 # Complete Guide to Text-to-Speech: From Basics to Advanced
@@ -78,7 +81,7 @@ SSML allows fine-tuned control:
 ```xml
 <speak>
   <prosody rate="90%">
-    Welcome to <emphasis level="strong">SynthWorks</emphasis>
+    Welcome to <emphasis level="="strong">SynthWorks</emphasis>
   </prosody>
   <break time="1s"/>
   Your AI automation platform.

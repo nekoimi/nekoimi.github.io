@@ -5,9 +5,24 @@ interface Props {
   title: string;
   description?: string;
   keywords?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  publishedTime?: Date;
 }
 
-const { title, description = 'SynthWorks Blog - AI Automation Insights', keywords = 'AI, automation, blog' } = Astro.props;
+const {
+  title,
+  description = 'SynthWorks Blog - AI Automation Insights',
+  keywords = 'AI, automation, blog',
+  image,
+  type = 'website',
+  publishedTime
+} = Astro.props;
+
+const siteUrl = 'https://www.sakuraio.com';
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl + '/blog').toString();
+const ogImage = image ? new URL(image, siteUrl + '/blog').toString() : `${siteUrl}/images/blog/featured.svg`;
+const publishedTimeStr = publishedTime ? publishedTime.toISOString() : new Date().toISOString();
 ---
 
 <!DOCTYPE html>
@@ -15,11 +30,52 @@ const { title, description = 'SynthWorks Blog - AI Automation Insights', keyword
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Basic Meta -->
     <meta name="description" content={description} />
     <meta name="keywords" content={keywords} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content="SynthWorks" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="article:published_time" content={publishedTimeStr} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@synthworks" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": {type === 'article' ? '"BlogPosting"' : '"WebSite"'},
+      "headline": {JSON.stringify(title)},
+      "description": {JSON.stringify(description)},
+      "image": {JSON.stringify(ogImage)},
+      "url": {JSON.stringify(canonicalUrl)},
+      "datePublished": {JSON.stringify(publishedTimeStr)},
+      "author": {
+        "@type": "Organization",
+        "name": "SynthWorks",
+        "url": "https://www.sakuraio.com"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "SynthWorks",
+        "logo": "https://www.sakuraio.com/logo.svg"
+      }
+    }
+    </script>
+
     <title>{title}</title>
   </head>
   <body>

@@ -3,6 +3,9 @@ title: 'Welcome to SynthWorks Blog'
 date: 2026-03-27
 description: 'Welcome to our new blog where we share insights about AI automation and the future of digital creativity.'
 tags: ['announcement', 'introduction']
+image: '/images/blog/hello-world.jpg'
+readingTime: 5
+featured: true
 ---
 
 # Welcome to SynthWorks Blog
@@ -22,13 +25,13 @@ SynthWorks is a modern AI automation platform built for creators and developers.
 
 In this blog, you'll find:
 
-1. **Product Updates** - New features and improvements
-2. **Tutorials** - Step-by-step guides for using our tools
-3. **Case Studies** - Real-world examples and success stories
-4. **Industry Insights** - Trends and thoughts on AI automation
+1. **Product Updates** - New features and improvements to our platform
+2. **Tutorials** - Step-by-step guides for getting the most out of our tools
+3. **Case Studies** - Real-world examples and success stories from our users
+4. **Industry Insights** - Our thoughts on trends in AI and automation
 
 ## Stay Connected
 
-We're just getting started, and there's much more to come. Make sure to bookmark this page or follow us on social media to stay updated with the latest content.
+We're just getting started, and there's much more to come. Make sure to bookmark this page or follow us on social media to stay updated with our latest content.
 
-Thanks for joining us on this journey!
+Thanks for joining us on this journey—we can't wait to show you what's possible with AI!

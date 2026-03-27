@@ -1,5 +1,4 @@
 ---
-import Tag from './Tag.astro';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
@@ -7,40 +6,72 @@ interface Props {
 }
 
 const { post } = Astro.props;
-const { Content } = await post.render();
 
 const formattedDate = new Date(post.data.date).toLocaleDateString('en-US', {
   year: 'numeric',
-  month: 'long',
+  month: 'short',
   day: 'numeric',
 });
+
+const readingTimeText = post.data.readingTime ? `${post.data.readingTime} min read` : '';
 ---
 
-<article class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden card-hover">
-  <div class="p-6">
-    <div class="flex items-center gap-2 mb-3">
-      <time class="text-sm text-gray-500" datetime={post.data.date.toISOString()}>
-        {formattedDate}
-      </time>
+<article class="bg-white rounded-xl border border-gray-200 asa-card overflow-hidden group">
+  {post.data.image && (
+    <div class="aspect-video relative bg-gray-100 overflow-hidden">
+      <img
+        src={post.data.image}
+        alt={post.data.title}
+        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+      />
       {post.data.tags && post.data.tags.length > 0 && (
-        <div class="flex gap-2 flex-wrap">
-          {post.data.tags.map(tag => <Tag tag={tag} />)}
+        <div class="absolute top-3 left-3 flex gap-2">
+          {post.data.tags.slice(0, 2).map(tag => (
+            <span class="px-2 py-1 text-xs font-medium bg-white/90 backdrop-blur-sm text-white rounded-full">
+              {tag}
+            </span>
+          ))}
         </div>
       )}
     </div>
+  )}
+
+  <div class="p-6">
+    <div class="flex items-center gap-3 mb-3">
+      <time class="text-xs text-gray-500" datetime={post.data.date.toISOString()}>
+        {formattedDate}
+      </time>
+      {readingTimeText && (
+        <>
+          <span class="text-gray-300">•</span>
+          <span class="text-xs text-gray-500">{readingTimeText}</span>
+        </>
+      )}
+    </div>
+
     <a href={`/${post.slug}/`} class="block group">
-      <h2 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+      <h2 class="text-lg md:text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors line-clamp-2">
         {post.data.title}
       </h2>
-      <p class="text-gray-600 line-clamp-3">
+      <p class="text-sm text-gray-600 line-clamp-3">
         {post.data.description}
       </p>
     </a>
-    <a
-      href={`/${post.slug}/`}
-      class="inline-block mt-4 text-blue-600 font-medium hover:text-blue-700 transition-colors"
-    >
-      Read more →
-    </a>
+
+    <div class="mt-4 flex items-center justify-between">
+      <div class="flex gap-2 flex-wrap">
+        {post.data.tags && post.data.tags.slice(post.data.image ? 2 : 0, 3).map(tag => (
+          <span class="px-2.5 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full hover:bg-blue-200 transition-colors">
+            {tag}
+          </span>
+        ))}
+      </div>
+      <a
+        href={`/${post.slug}/`}
+        class="text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors"
+      >
+        Read →
+      </a>
+    </div>
   </div>
 </article>

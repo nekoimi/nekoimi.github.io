@@ -1,0 +1,60 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  currentPost: CollectionEntry<'blog'>;
+  allPosts: CollectionEntry<'blog'>[];
+}
+
+const { currentPost, allPosts } = Astro.props;
+
+// 获取相关文章（根据标签和日期）
+const getRelatedPosts = () => {
+  const currentTags = currentPost.data.tags || [];
+  const withTags = allPosts.filter(post => {
+    if (post.slug === currentPost.slug) return false;
+    const postTags = post.data.tags || [];
+    // 至少有一个共同标签
+    return postTags.some(tag => currentTags.includes(tag));
+  });
+
+  // 按日期排序，取前3篇
+  return withTags
+    .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+    .slice(0, 3);
+};
+
+const relatedPosts = getRelatedPosts();
+---
+
+{relatedPosts.length > 0 && (
+  <section class="mt-12 pt-12 border-t border-gray-200">
+    <h3 class="text-2xl font-bold text-gray-900 mb-6">Related Articles</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {relatedPosts.map(post => {
+        const formattedDate = new Date(post.data.date).toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric',
+        });
+
+        return (
+          <a
+            href={`/${post.slug}/`}
+            class="block p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors group"
+          >
+            <time class="text-xs text-gray-500 mb-2 block" datetime={post.data.date.toISOString()}>
+              {formattedDate}
+            </time>
+            <h4 class="font-semibold text-gray-900 mb-1 group-hover:text-blue-600 transition-colors">
+              {post.data.title}
+            </h4>
+            <p class="text-sm text-gray-600 line-clamp-2">
+              {post.data.description}
+            </p>
+          </a>
+        );
+      })}
+    </div>
+  </section>
+)}

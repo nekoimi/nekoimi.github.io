@@ -2,6 +2,9 @@
 import BlogLayout from '../layouts/BlogLayout.astro';
 import Header from '../components/Header.astro';
 import Tag from '../components/Tag.astro';
+import CTA from '../components/CTA.astro';
+import RelatedPosts from '../components/RelatedPosts.astro';
+import SocialShare from '../components/SocialShare.astro';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -21,41 +24,115 @@ const formattedDate = new Date(post.data.date).toLocaleDateString('en-US', {
   day: 'numeric',
 });
 
+const readingTimeText = post.data.readingTime ? `${post.data.readingTime} min read` : '';
 const keywords = post.data.tags?.join(', ') || 'AI, automation, blog';
+
+// 确定文章相关工具 CTA
+const getToolCTA = () => {
+  const tags = post.data.tags || [];
+  if (tags.some(tag => ['TTS', 'Speech', 'Voice'].includes(tag))) {
+    return { href: '/tools/tts', label: 'Try Text-to-Speech' };
+  }
+  if (tags.some(tag => ['Video', 'Face', 'Swap'].includes(tag))) {
+    return { href: '/tools/face-swap', label: 'Try Face Swap' };
+  }
+  if (tags.some(tag => ['OCR', 'Text', 'Document'].includes(tag))) {
+    return { href: '/tools/ocr', label: 'Try OCR' };
+  }
+  return { href: '/tools', label: 'Explore All Tools' };
+};
+
+const toolCTA = getToolCTA();
 ---
 
 <BlogLayout
   title={post.data.title}
   description={post.data.description}
   keywords={keywords}
+  image={post.data.image}
+  type="article"
+  publishedTime={post.data.date}
 >
   <Header />
-  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <article>
-      <header class="mb-8">
-        <a href="/" class="text-blue-600 hover:text-blue-700 transition-colors">
-          ← Back to Blog
-        </a>
-        <h1 class="text-4xl md:text-5xl font-bold mt-4 mb-4">
-          {post.data.title}
-        </h1>
-        <div class="flex items-center gap-4 text-sm text-gray-500">
-          <time datetime={post.data.date.toISOString()}>
-            {formattedDate}
-          </time>
-          {post.data.tags && post.data.tags.length > 0 && (
-            <>
-              <span>•</span>
-              <div class="flex gap-2 flex-wrap">
-                {post.data.tags.map(tag => <Tag tag={tag} />)}
-              </div>
-            </>
-          )}
-        </div>
-      </header>
 
-      <div class="prose prose prose-lg prose-gray max-w-none">
-        <Content />
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-gray-50 min-h-screen">
+    <article class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
+      {/* 封面图片 */}
+      {post.data.image && (
+        <div class="aspect-video md:aspect-video/16/9 relative bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
+          <img
+            src={post.data.image}
+            alt={post.data.title}
+            class="w-full h-full object-cover"
+          />
+        </div>
+      )}
+
+      <div class="p-6 md:p-10">
+        {/* 返回链接 */}
+        <a href="/" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 transition-colors mb-6">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Back to Blog
+        </a>
+
+        {/* 文章标题和元数据 */}
+        <header class="mb-8">
+          <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">
+            {post.data.title}
+          </h1>
+
+          <div class="flex flex-wrap items-center gap-4 text-sm text-gray-500">
+            <time class="flex items-center gap-1" datetime={post.data.date.toISOString()}>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4v4m-4-4h8" />
+              </svg>
+              {formattedDate}
+            </time>
+
+            {readingTimeText && (
+              <>
+                <span class="text-gray-300">•</span>
+                <span class="flex items-center gap-1">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l0 0 0 0-4h16m-6.5 4a1.5 1.5 0 010-3a1.5 1.5 0 01-3 0 6.01-6.01 6.01-11.5a3.5 3.5 0 01-12.01-18.01-18.01-21.5aari-7.363 7.363 0 0018.01-9.01-9.01-16.01-16.01A6 6 0 1114.66 8.01 11.51 8.01 11.51 8.01 11.51 8.01A7 7 0 1112.2.25 6.01-6.5-2.25 6.01-2.25 6.01-5.25 5.5 6.01-2.25 2.25 6.01A6 6 0 1114.31 3.24 6.51 3.24 6.51 3.24 6.51 3.24 6.51A6 6 0 1118.15 4.51 7.35 4.51 7.35 4.51 7.35 4.51A6 6 0 1123.01 3.51 5.51 3.51 5.51 3.51 5.51 3.51 5.51 3.51 5.51A5.5 5.5 0 1111.51 12.01 1.51 12.01 1.51 12.01 1.51 12.01 1.51 12.01 1.51A3.5 3.5 0 1111.51 12.01 4.51 3.51 4.51 3.51 4.51 3.51 4.51 3.51 4.51 3.51 4.51A3.5 3.5 0 1112.88 6.51 3.89 6.51 3.89 6.51 3.89 6.51 3.89 6.51 3.89 6.51 3.89 6.51 3.89 6.51 3.89 6.51A2.5 2.5 0 1114.88 9.51 2.51 9.51 2.51 9.51 2.51 9.51 2.51 9.51 2.51A2.5 2.5 0 1112.61 6.51 3.11 6.51 3.11 6.51 3.11 6.51 3.11 6.51 3.11 6.51A2.2 0 1112.31 8.51 4.31 8.51 4.31 8.51 4.31 8.51 4.31 8.51 4.31A2 2 0 1112.31 8.51 4.31 8.51 4.31 8.51 4.31 8.51 4.31 4.31 8.51 4.31A2.2 0 1114.77 11.51 4.77 11.51 4.77 11.51 4.77 11.51 4.77 11.51 4.77 11.51 4.77 11.51 4.77 11.51 4.77A3 3 0 1114.5 19.5 3.5 19.5 3.5 19.5 3.5 19.5 3.5 19.5 3.5 19.5A2.5 2.5 0 1114.86 16.5 6.5 16.5 6.5 16.5 6.5 16.5 6.5 16.5 6.5 16.5 6.5 16.5 6.5A2.5 2.5 0 1113.68 20.5 1.5 20.5 1.5 20.5 1.5 20.5 1.5 20.5 1.5 20.5A3 3 0 1115.5 16.5 9 16.5 9 16.5 9 16.5 9 16.5 9 16.5 9 16.5 9 16.5 9 16.5 9 16.5 9z" />
+                  </svg>
+                  {readingTimeText}
+                </span>
+              </>
+            )}
+          </div>
+
+          {post.data.tags && post.data.tags.length > 0 && (
+            <div class="flex flex-wrap gap-2 mt-2">
+              {post.data.tags.map(tag => <Tag tag={tag} />)}
+            </div>
+          )}
+        </header>
+
+        {/* 文章内容 */}
+        <div class="prose-enhanced">
+          <Content />
+        </div>
+
+        {/* 社交分享 */}
+        <SocialShare />
+
+        {/* 相关文章 CTA */}
+        <section class="mt-12 pt-8 border-t border-gray-200">
+          <div class="text-center">
+            <h3 class="text-xl font-bold text-gray-900 mb-3">
+              Try This Feature
+            </h3>
+            <p class="text-gray-600 mb-4">
+              Start automating with our AI-powered tools
+            </p>
+            <CTA href={toolCTA.href}>
+              <span>{toolCTA.label}</span>
+            </CTA>
+          </div>
+        </section>
       </div>
     </article>
   </main>

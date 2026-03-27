@@ -1,34 +1,95 @@
 ---
 import BlogLayout from '../layouts/BlogLayout.astro';
-import Header from '../components/Header.astro';
+import BlogHero from '../components/BlogHero.astro';
 import BlogCard from '../components/BlogCard.astro';
+import FeaturedPost from '../components/FeaturedPost.astro';
+import TagFilter from '../components/TagFilter.astro';
+import CTA from '../components/CTA.astro';
 import { getCollection } from 'astro:content';
 
 const allPosts = (await getCollection('blog')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
+
+// 获取特色文章
+const featuredPost = allPosts.find(post => post.data.featured === true);
+
+// 获取非特色文章
+const otherPosts = allPosts.filter(post => post.data.featured !== true);
+
+// 提取所有标签
+const allTags = allPosts.flatMap(post => post.data.tags || []);
+
+// 获取 URL 参数中的标签筛选
+const url = new URL(Astro.url.href);
+const tagFilter = url.searchParams.get('tag');
+
+// 根据标签筛选
+const filteredPosts = tagFilter
+  ? otherPosts.filter(post => post.data.tags?.includes(tagFilter))
+  : otherPosts;
 ---
 
-<BlogLayout title="SynthWorks Blog - AI Automation Insights">
-  <Header />
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <div class="mb-12">
-      <h1 class="text-4xl md:text-5xl font-bold mb-4">
-        <span class="gradient-text">SynthWorks Blog</span>
-      </h1>
-      <p class="text-xl text-gray-600">
-        Insights, tutorials, and news about AI automation and digital creativity
-      </p>
-    </div>
+<BlogLayout
+  title="SynthWorks Blog - AI Automation Insights"
+  description="Explore insights, tutorials, and news about AI automation and digital creativity"
+  keywords="AI, automation, blog, TTS, OCR, face swap"
+>
+  <BlogHero />
 
-    {allPosts.length > 0 ? (
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {allPosts.map(post => <BlogCard post={post} />)}
-      </div>
-    ) : (
-      <div class="text-center py-12">
-        <p class="text-gray-500">No blog posts yet. Stay tuned!</p>
-      </div>
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-gray-50">
+    {/* 特色文章 */}
+    {featuredPost && (
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+          <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921-.623-1.26-1.314-.956-2.123-1.089-2.26-.595-.921-1.226-.539-.956-1.093-.731-1.488-1.193-.237-1.451-.328-1.352-.602-.345-1.063-.582-.581-1.528.695-2.029 1.13-2.145.775-2.37 1.223-2.271 1.197-2.648.742-2.915 1.361-2.932.923-3.167 1.36-3.375.462-4.765 1.36-4.803.923-5.227 1.36-5.595.757-5.82 1.36-5.904.733-5.86 2.037-5.757 2.331-5.603 2.485-5.236 2.24-4.949 2.24-4.949 3.503-3.503 3.531-3.531 3.982-3.883 3.982-4.227.866-4.015.862-4.015 3.233-3.865 3.233-4.227 1.011-4.227.874-3.865.874-4.227 2.667-3.865 2.667-4.227.822-3.865.822-4.227.696-3.865.696-4.227.398-3.865.398-4.227.298-3.865.298-4.227.289-3.865.289-4.227 2.353-3.865 2.353-4.227.046-3.865.046-4.227.409-3.865.409-4.227.428-3.865.428-4.227.261-3.865.261-4.227.011-3.865.011-4.227.194-3.865.194-4.227.194-3.865.194-4.227.05-3.865.05-4.227.008-3.865.008-4.227.006-3.865.006-4.227.005-3.865.005-4.227.003-3.865.003-4.227h-4.5v4.5h1.5v-1h1.5v-4.5h4.5v-1h1.5" />
+          </svg>
+          Featured Post
+        </h2>
+        <FeaturedPost post={featuredPost} />
+      </section>
     )}
+
+    {/* 标签筛选 */}
+    <section class="mb-8">
+      <TagFilter allTags={allTags} selectedTag={tagFilter} />
+    </section>
+
+    {/* 文章列表 */}
+    <section>
+      <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l0 0 0 0-4h16m-5.5 5.5a1.5 1.5 0 010-3a1.5 1.5 0 01-3 0 6.01-6.01 6.01-11.5a3.5 3.5 0 01-12.01-18.01 18.01-21.5aari-7.363 7.363 0 0018.01-9.01-9.01-9.01-16.01-16.01-16.01A6 6 0 1114.66 8.01 11.51 8.01 11.51 8.01 11.51-8.01-8.01A7 7 0 1112-2.25 6.01-6.5-2.25 6.01-2.25 6.01-5.25 5.5 6.01-5.5 6.01-2.25 2.25 6.01A6 6 0 1114.31 3.24 6.51 3.24 6.51 3.24 6.51 3.24 6.51 3.24 6.51A6 6 0 1118.15 4.51 7.35 4.51 7.35 4.51 7.35 4.51 7.35 4.51 7.35 4.51A6 6 0 1123.01 3.51 5.51 3.51 5.51 3.51 5.51 3.51 5.51 3.51 5.51 3.51 5.51A5.5 5.5 0 1111.51 12.01 1.51 12.01 1.51 12.01 1.51 12.01 1.51 12.01 1.51 12.01 1.51A3.5 3.5 0 1111.51 12.01 4.51 3.51 4.51 3.51 4.51 3.51 4.51 3.51 4.51 3.51 4.51 3.51 4.51A3.5 3.5 0 1112.88 6.51 3.89 6.51 3.89 6.51 3.89 6.51 3.89 6.51 3.89 6.51 3.89 6.51 3.89 6.51A2.5 2.5 0 1114.88 9.51 2.51 9.51 2.51 9.51 2.51 9.51 2.51 9.51 2.51 9.51 2.51 9.51 2.51A2.5 2.5 0 1112.61 6.51 3.11 6.51 3.11 6.51 3.11 6.51 3.11 6.51 3.11 6.51 3.11 6.51 3.11 6.51A2 2 0 1112.31 8.51 4.31 8.51 4.31 8.51 4.31 8.51 4.31 8.51 4.31 8.51 4.31 8.51 4.31 4.31 4.31 4.31 4.31A2 2 0 1114.77 11.51 4.77 11.51 4.77 11.51 4.77 11.51 4.77 11.51 4.77 11.51 4.77 11.51 4.77 11.51 4.77 11.51 4.77 11.51 4.77A3 3 0 1114.5 19.5 3.5 19.5 3.5 19.5 3.5 19.5 3.5 19.5 3.5 19.5 3.5 19.5 3.5 19.5 3.5 19.5 3.5 3.5 19.5A2.5 2.5 0 1114.86 16.5 6.5 16.5 6.5 16.5 6.5 16.5 6.5 16.5 6.5 16.5 6.5 16.5 6.5 16.5 6.5 6.5 6.5A2.5 2.5 0 1113.68 20.5 1.5 20.5 1.5 20.5 1.5 20.5 1.5 20.5 1.5 20.5 1.5 20.5 1.5 20.5 1.5 20.5A3 3 0 1115.5 16.5 9 16.5 9 16.5 9 16.5 9 16.5 9 16.5 9 16.5 9 16.5 9 16.5 9 16.5 9 16.5 9 16.5 9 16.5 9 16.5 9 16.5 9 16.5 9z" />
+        </svg>
+        {tagFilter ? `Posts tagged with "${tagFilter}"` : 'Latest Posts'}
+      </h2>
+
+      {filteredPosts.length > 0 ? (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredPosts.map(post => <BlogCard post={post} />)}
+        </div>
+      ) : (
+        <div class="text-center py-12">
+          <p class="text-gray-500 mb-4">No posts found</p>
+          <a href="/" class="text-blue-600 hover:text-blue-700">View all posts</a>
+        </div>
+      )}
+    </section>
   </main>
+
+  {/* CTA Section */}
+  <section class="bg-white border-t border-gray-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        <span class="gradient-text">Ready to Automate?</span>
+      </h2>
+      <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+        Explore our suite of AI-powered tools and start transforming your workflow today
+      </p>
+      <CTA href="/tools">
+        <span>Get Started Free</span>
+      </CTA>
+    </div>
+  </section>
 </BlogLayout>

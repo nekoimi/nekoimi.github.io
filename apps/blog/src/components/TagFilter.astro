@@ -1,0 +1,42 @@
+---
+interface Props {
+  allTags: string[];
+  selectedTag?: string;
+}
+
+const { allTags, selectedTag } = Astro.props;
+
+const commonTags = ['AI', 'Video', 'OCR', 'Automation'];
+const displayTags = [...new Set([...commonTags, ...allTags])].slice(0, 8);
+---
+
+<div class="mb-8">
+  <div class="flex flex-wrap gap-2">
+    <a
+      href={selectedTag ? '/' : '/'}
+      class={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
+        !selectedTag
+          ? 'bg-blue-600 text-white shadow-md shadow-blue-500/30'
+          : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-200'
+      }`}
+    >
+      All
+    </a>
+
+    {displayTags.map(tag => {
+      const isSelected = selectedTag === tag;
+      return (
+        <a
+          href={`/?tag=${tag}`}
+          class={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
+            isSelected
+              ? 'bg-blue-600 text-white shadow-md shadow-blue-500/30'
+              : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-200'
+          }`}
+        >
+          {tag}
+        </a>
+      );
+    })}
+  </div>
+</div>
