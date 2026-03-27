@@ -5,12 +5,14 @@
     "dev:home": "pnpm --filter home dev",
     "dev:docs": "pnpm --filter docs dev",
     "dev:tools": "pnpm --filter tools dev",
+    "dev:blog": "pnpm --filter blog dev",
     "dev": "pnpm dev:home",
     "dev:web": "pnpm dev:home",
     "build:home": "pnpm --filter home build",
     "build:docs": "pnpm --filter docs build",
     "build:tools": "pnpm --filter tools build",
-    "build": "pnpm build:home && pnpm build:docs && pnpm build:tools",
+    "build:blog": "pnpm --filter blog build",
+    "build": "pnpm build:home && pnpm build:docs && pnpm build:tools && pnpm build:blog",
     "build:web": "pnpm build:home"
   },
   "devDependencies": {

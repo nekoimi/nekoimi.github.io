@@ -1,0 +1,62 @@
+---
+import BlogLayout from '../layouts/BlogLayout.astro';
+import Header from '../components/Header.astro';
+import Tag from '../components/Tag.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+const formattedDate = new Date(post.data.date).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+const keywords = post.data.tags?.join(', ') || 'AI, automation, blog';
+---
+
+<BlogLayout
+  title={post.data.title}
+  description={post.data.description}
+  keywords={keywords}
+>
+  <Header />
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <article>
+      <header class="mb-8">
+        <a href="/" class="text-blue-600 hover:text-blue-700 transition-colors">
+          ← Back to Blog
+        </a>
+        <h1 class="text-4xl md:text-5xl font-bold mt-4 mb-4">
+          {post.data.title}
+        </h1>
+        <div class="flex items-center gap-4 text-sm text-gray-500">
+          <time datetime={post.data.date.toISOString()}>
+            {formattedDate}
+          </time>
+          {post.data.tags && post.data.tags.length > 0 && (
+            <>
+              <span>•</span>
+              <div class="flex gap-2 flex-wrap">
+                {post.data.tags.map(tag => <Tag tag={tag} />)}
+              </div>
+            </>
+          )}
+        </div>
+      </header>
+
+      <div class="prose prose prose-lg prose-gray max-w-none">
+        <Content />
+      </div>
+    </article>
+  </main>
+</BlogLayout>

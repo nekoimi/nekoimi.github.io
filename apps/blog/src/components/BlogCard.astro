@@ -1,0 +1,46 @@
+---
+import Tag from './Tag.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+const formattedDate = new Date(post.data.date).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<article class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden card-hover">
+  <div class="p-6">
+    <div class="flex items-center gap-2 mb-3">
+      <time class="text-sm text-gray-500" datetime={post.data.date.toISOString()}>
+        {formattedDate}
+      </time>
+      {post.data.tags && post.data.tags.length > 0 && (
+        <div class="flex gap-2 flex-wrap">
+          {post.data.tags.map(tag => <Tag tag={tag} />)}
+        </div>
+      )}
+    </div>
+    <a href={`/${post.slug}/`} class="block group">
+      <h2 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+        {post.data.title}
+      </h2>
+      <p class="text-gray-600 line-clamp-3">
+        {post.data.description}
+      </p>
+    </a>
+    <a
+      href={`/${post.slug}/`}
+      class="inline-block mt-4 text-blue-600 font-medium hover:text-blue-700 transition-colors"
+    >
+      Read more →
+    </a>
+  </div>
+</article>

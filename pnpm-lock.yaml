@@ -12,6 +12,22 @@ importers:
         specifier: ^5.7.3
         version: 5.9.3
 
+  apps/blog:
+    dependencies:
+      astro:
+        specifier: ^4.16.18
+        version: 4.16.19(rollup@4.60.0)(typescript@5.9.3)
+    devDependencies:
+      '@astrojs/tailwind':
+        specifier: ^5.1.5
+        version: 5.1.5(astro@4.16.19(rollup@4.60.0)(typescript@5.9.3))(tailwindcss@3.4.19(yaml@2.8.3))
+      autoprefixer:
+        specifier: ^10.4.27
+        version: 10.4.27(postcss@8.5.8)
+      tailwindcss:
+        specifier: ^3.4.19
+        version: 3.4.19(yaml@2.8.3)
+
   apps/docs:
     dependencies:
       vitepress:
