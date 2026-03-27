@@ -1,9 +1,12 @@
 ---
-import { t, loadTranslation, getLocaleFromPathname, getPathnameFromLocale } from '../i18n/translator';
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import { t, loadTranslation, getLocaleFromPathname, getPathnameFromLocale } from '../../i18n/translator';
 
 const locale = getLocaleFromPathname(Astro.url.pathname);
 const translationData = await loadTranslation(locale);
-const title = t(translationData, 'footer.privacy) || 'Privacy Policy';
+const title = t(translationData, 'footer.privacy') || 'Privacy Policy';
 ---
 
 <Layout title={title}>

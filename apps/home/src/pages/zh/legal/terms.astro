@@ -1,4 +1,7 @@
 ---
+import Layout from '../../../layouts/Layout.astro';
+import Navbar from '../../../components/Navbar.astro';
+import Footer from '../../../components/Footer.astro';
 import { t, loadTranslation, getLocaleFromPathname, getPathnameFromLocale } from '../../../i18n/translator';
 
 const locale = getLocaleFromPathname(Astro.url.pathname);
@@ -50,7 +53,7 @@ const title = t(translationData, 'footer.terms') || '服务条款';
 
         <h2 class="text-2xl font-bold mt-8 mb-4">责任限制</h2>
         <p class="text-gray-600 mb-6">
-          SynthWorks 按�原样提供，不附带任何形式的保证。对于任何间接、偶然、特殊或后果性损害，我们概不负责。
+          SynthWorks 按"原样"提供，不附带任何形式的保证。对于任何间接、偶然、特殊或后果性损害，我们概不负责。
         </p>
 
         <h2 class="text-2xl font-bold mt-8 mb-4">终止</h2>

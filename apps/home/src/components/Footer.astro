@@ -119,13 +119,13 @@ const currentYear = new Date().getFullYear();
           &copy; {currentYear} SynthWorks. {t(translationData, 'footer.copyright')}
         </p>
         <div class="flex gap-6 text-sm">
-          <a href={getPathnameFromLocale(locale, '/privacy')} class="text-gray-400 hover:text-white transition-colors">
+          <a href={getPathnameFromLocale(locale, '/legal/privacy/')} class="text-gray-400 hover:text-white transition-colors">
             {t(translationData, 'footer.privacy')}
           </a>
-          <a href={getPathnameFromLocale(locale, '/terms')} class="text-gray-400 hover:text-white transition-colors">
+          <a href={getPathnameFromLocale(locale, '/legal/terms/')} class="text-gray-400 hover:text-white transition-colors">
             {t(translationData, 'footer.terms')}
           </a>
-          <a href={getPathnameFromLocale(locale, '/cookies')} class="text-gray-400 hover:text-white transition-colors">
+          <a href={getPathnameFromLocale(locale, '/legal/cookies/')} class="text-gray-400 hover:text-white transition-colors">
             {t(translationData, 'footer.cookies')}
           </a>
         </div>
