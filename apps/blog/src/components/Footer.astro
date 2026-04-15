@@ -1,0 +1,15 @@
+---
+import Socials from './Socials.astro';
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="app-layout mt-16">
+  <div class="flex flex-col gap-4 border-t border-border py-6 text-sm text-foreground/70 sm:flex-row sm:items-center sm:justify-between">
+    <div class="flex flex-col gap-2">
+      <p>Copyright © {currentYear} nekoimi. All rights reserved.</p>
+      <p>Built with Astro and an AstroPaper-style blog structure.</p>
+    </div>
+    <Socials />
+  </div>
+</footer>

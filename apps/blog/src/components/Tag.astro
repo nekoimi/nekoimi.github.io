@@ -1,11 +1,23 @@
 ---
-interface Props {
+type Props = {
   tag: string;
-}
+  tagName?: string;
+  size?: 'sm' | 'lg';
+};
 
-const { tag } = Astro.props;
+const { tag, tagName = tag, size = 'lg' } = Astro.props;
 ---
 
-<span class="inline-block px-3 py-1 text-sm font-medium bg-blue-100 text-blue-800 rounded-full">
-  {tag}
-</span>
+<li>
+  <a
+    href={`/tags/${tag}/`}
+    class:list={[
+      'inline-flex items-center gap-1 rounded-full border border-border px-3 py-1 text-foreground/80 transition hover:border-accent/40 hover:text-accent',
+      { 'text-xs': size === 'sm' },
+      { 'text-sm': size === 'lg' },
+    ]}
+  >
+    <span aria-hidden="true">#</span>
+    {tagName}
+  </a>
+</li>

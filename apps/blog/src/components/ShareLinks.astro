@@ -1,0 +1,62 @@
+---
+type Props = {
+  title: string;
+  url: string;
+};
+
+const { title, url } = Astro.props;
+const encodedTitle = encodeURIComponent(title);
+const encodedUrl = encodeURIComponent(url);
+
+const links = [
+  {
+    name: 'X',
+    href: `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`,
+  },
+  {
+    name: 'LinkedIn',
+    href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
+  },
+  {
+    name: 'Copy Link',
+    href: url,
+  },
+];
+---
+
+<div class="flex flex-wrap items-center gap-3">
+  {links.map(link => (
+    <a
+      href={link.href}
+      class="share-link inline-flex rounded-md border border-border px-3 py-1.5 text-sm transition hover:border-accent/40 hover:text-accent"
+      target={link.name === 'Copy Link' ? undefined : '_blank'}
+      rel={link.name === 'Copy Link' ? undefined : 'noreferrer'}
+      data-copy-link={link.name === 'Copy Link' ? url : undefined}
+    >
+      {link.name}
+    </a>
+  ))}
+</div>
+
+<script>
+  function mountCopyShareLink() {
+    document.querySelectorAll('[data-copy-link]').forEach(node => {
+      if (node instanceof HTMLAnchorElement) {
+        node.onclick = async event => {
+          event.preventDefault();
+          const value = node.dataset.copyLink;
+          if (!value) return;
+          await navigator.clipboard.writeText(value);
+          const originalText = node.textContent;
+          node.textContent = 'Copied';
+          window.setTimeout(() => {
+            node.textContent = originalText;
+          }, 1200);
+        };
+      }
+    });
+  }
+
+  mountCopyShareLink();
+  document.addEventListener('astro:after-swap', mountCopyShareLink);
+</script>

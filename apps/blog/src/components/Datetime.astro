@@ -1,0 +1,25 @@
+---
+type Props = {
+  pubDatetime: string | Date;
+  modDatetime?: string | Date | null;
+  class?: string;
+};
+
+const { pubDatetime, modDatetime, class: className } = Astro.props;
+
+const current = new Date(pubDatetime);
+const updated = modDatetime ? new Date(modDatetime) : null;
+const isModified = updated && updated.valueOf() > current.valueOf();
+const finalDate = isModified ? updated : current;
+
+const formatted = finalDate.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+});
+---
+
+<div class:list={['text-sm text-foreground/70', className]}>
+  {isModified ? 'Updated: ' : ''}
+  <time datetime={finalDate.toISOString()}>{formatted}</time>
+</div>

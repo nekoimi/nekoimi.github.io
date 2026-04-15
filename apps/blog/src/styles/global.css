@@ -2,121 +2,91 @@
 @tailwind components;
 @tailwind utilities;
 
+:root,
+html[data-theme='light'] {
+  --background: 253 253 253;
+  --foreground: 40 39 40;
+  --accent: 0 108 172;
+  --muted: 230 230 230;
+  --border: 236 233 233;
+}
+
+html[data-theme='dark'] {
+  --background: 33 39 55;
+  --foreground: 234 237 243;
+  --accent: 255 107 1;
+  --muted: 52 63 96;
+  --border: 86 98 130;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
-body {
-  @apply bg-gray-50 text-gray-900 antialiased;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+@layer base {
+  * {
+    @apply border-border outline-accent/75;
+    scrollbar-width: auto;
+    scrollbar-color: rgb(var(--muted)) transparent;
+  }
+
+  html {
+    @apply overflow-y-scroll;
+  }
+
+  body {
+    @apply min-h-screen bg-background text-foreground antialiased selection:bg-accent/80 selection:text-background;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  a,
+  button {
+    @apply outline-offset-2 outline-accent focus-visible:outline-2 focus-visible:outline-dashed;
+  }
 }
 
-/* 卡片效果 */
-.saas-card {
-  @apply bg-white rounded-xl border border-gray-200;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+@layer components {
+  .app-layout {
+    @apply mx-auto w-full max-w-app px-4;
+  }
+
+  .active-nav {
+    @apply underline decoration-wavy decoration-2 underline-offset-8;
+  }
+
+  .app-card {
+    @apply rounded-2xl border border-border/90 bg-background/95 shadow-sm transition hover:border-accent/40 hover:shadow-md;
+  }
+
+  .app-prose {
+    @apply prose prose-neutral max-w-none;
+  }
 }
 
-.saas-card:hover {
-  @apply border-gray-300 shadow-xl shadow-gray-200/50;
-  transform: translateY(-4px);
+.app-prose pre {
+  @apply overflow-x-auto rounded-xl border border-border bg-muted/70 p-4;
 }
 
-/* 渐变背景 */
-.hero-gradient {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+.app-prose pre code {
+  @apply bg-transparent p-0;
 }
 
-/* Prose 增强样式（不使用 @tailwindcss/typography）*/
-.prose-enhanced {
-  font-family: inherit;
-  color: #1f2937;
-  font-size: 1.125rem;
-  line-height: 1.75;
+.app-prose code {
+  word-break: break-word;
 }
 
-.prose-enhanced h1,
-.prose-enhanced h2,
-.prose-enhanced h3 {
-  font-weight: 600;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  line-height: 1.5;
+.app-prose :where(h2, h3, h4, h5, h6) {
+  scroll-margin-top: 1.5rem;
 }
 
-.prose-enhanced h1 {
-  font-size: 2.25rem;
+.heading-link {
+  color: rgb(var(--accent));
 }
 
-.prose-enhanced h2 {
-  font-size: 1.875rem;
+.copy-code {
+  color: rgb(var(--foreground));
 }
 
-.prose-enhanced h3 {
-  font-size: 1.5rem;
-}
-
-.prose-enhanced p {
-  margin-bottom: 1.25rem;
-}
-
-.prose-enhanced a {
-  color: #2563eb;
-  text-decoration: none;
-}
-
-.prose-enhanced a:hover {
-  text-decoration: underline;
-}
-
-.prose-enhanced strong {
-  color: #111827;
-}
-
-.prose-enhanced blockquote {
-  border-left: 4px solid #bfdbfe;
-  padding-left: 1rem;
-  font-style: italic;
-  color: #4b5563;
-}
-
-.prose-enhanced code {
-  background-color: #f3f4f6;
-  padding: 0.125rem 0.25rem;
-  border-radius: 0.25rem;
-  font-size: 0.875rem;
-}
-
-.prose-enhanced pre {
-  background-color: #f3f4f6;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  overflow-x: auto;
-}
-
-.prose-enhanced img {
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-}
-
-.prose-enhanced ul,
-.prose-enhanced ol {
-  margin-bottom: 1.25rem;
-  padding-left: 1.5rem;
-}
-
-.prose-enhanced li {
-  margin-bottom: 0.5rem;
-}
-
-.prose-enhanced hr {
-  margin: 2rem 0;
-  border-color: #e5e7eb;
-}
-
-/* 旧版兼容 */
-.gradient-text {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600;
+:target {
+  scroll-margin-block: 1rem;
 }

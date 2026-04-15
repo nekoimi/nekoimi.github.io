@@ -1,0 +1,18 @@
+---
+import { SOCIALS } from '../constants';
+---
+
+<ul class="flex flex-wrap items-center gap-3">
+  {SOCIALS.map(item => (
+    <li>
+      <a
+        href={item.href}
+        class="inline-flex rounded-md border border-border px-3 py-1.5 text-sm transition hover:border-accent/40 hover:text-accent"
+        target={item.href.startsWith('http') ? '_blank' : undefined}
+        rel={item.href.startsWith('http') ? 'noreferrer' : undefined}
+      >
+        {item.name}
+      </a>
+    </li>
+  ))}
+</ul>

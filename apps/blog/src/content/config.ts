@@ -3,12 +3,13 @@ import { defineCollection, z } from 'astro:content';
 const blog = defineCollection({
   schema: z.object({
     title: z.string(),
-    date: z.coerce.date(),
     description: z.string(),
-    tags: z.array(z.string()).optional(),
-    image: z.string().optional(),
-    readingTime: z.number().optional(),
-    featured: z.boolean().optional(),
+    pubDatetime: z.coerce.date(),
+    modDatetime: z.coerce.date().optional().nullable(),
+    tags: z.array(z.string()).default(['others']),
+    featured: z.boolean().default(false),
+    draft: z.boolean().default(false),
+    ogImage: z.string().optional(),
   }),
 });
 

@@ -1,0 +1,49 @@
+---
+import type { Page } from 'astro';
+import type { CollectionEntry } from 'astro:content';
+
+type Props = {
+  page: Page<CollectionEntry<'blog'>>;
+};
+
+const { page } = Astro.props;
+---
+
+{
+  page.lastPage > 1 && (
+    <nav
+      class="app-layout my-10 flex items-center justify-center gap-4 text-sm"
+      aria-label="Pagination"
+    >
+      {page.url.prev ? (
+        <a
+          href={page.url.prev}
+          class="rounded-md border border-border px-4 py-2 hover:border-accent/40 hover:text-accent"
+        >
+          Prev
+        </a>
+      ) : (
+        <span class="rounded-md border border-border px-4 py-2 opacity-50">
+          Prev
+        </span>
+      )}
+
+      <span class="text-foreground/70">
+        {page.currentPage} / {page.lastPage}
+      </span>
+
+      {page.url.next ? (
+        <a
+          href={page.url.next}
+          class="rounded-md border border-border px-4 py-2 hover:border-accent/40 hover:text-accent"
+        >
+          Next
+        </a>
+      ) : (
+        <span class="rounded-md border border-border px-4 py-2 opacity-50">
+          Next
+        </span>
+      )}
+    </nav>
+  )
+}

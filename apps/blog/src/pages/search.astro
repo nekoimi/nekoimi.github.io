@@ -1,0 +1,104 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import Main from '../layouts/Main.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE } from '../config';
+import getSortedPosts from '../utils/getSortedPosts';
+import getPostSlug from '../utils/getPostSlug';
+
+const posts = getSortedPosts(await getCollection('blog', ({ data }) => !data.draft)).map(post => ({
+  title: post.data.title,
+  description: post.data.description,
+  tags: post.data.tags,
+  href: `/posts/${getPostSlug(post.id)}/`,
+}));
+---
+
+<Layout title={`Search | ${SITE.title}`}>
+  <Header />
+  <Main pageTitle="Search" pageDesc="Search posts by title, description, and tags.">
+    <div class="max-w-3xl">
+      <label class="block">
+        <span class="sr-only">Search posts</span>
+        <input
+          id="search-input"
+          type="search"
+          placeholder="Search posts..."
+          class="w-full rounded-xl border border-border bg-background px-4 py-3 text-base shadow-sm"
+        />
+      </label>
+
+      <p id="search-status" class="mt-4 text-sm text-foreground/65">
+        {posts.length} posts available.
+      </p>
+
+      <ul id="search-results" class="mt-6 space-y-4"></ul>
+    </div>
+  </Main>
+  <Footer />
+</Layout>
+
+<script define:vars={{ posts }}>
+  function mountSearch() {
+    const input = document.querySelector('#search-input');
+    const results = document.querySelector('#search-results');
+    const status = document.querySelector('#search-status');
+
+    if (
+      !(input instanceof HTMLInputElement) ||
+      !(results instanceof HTMLUListElement) ||
+      !(status instanceof HTMLParagraphElement)
+    ) {
+      return;
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const initialQuery = params.get('q') ?? '';
+    input.value = initialQuery;
+
+    const render = (query: string) => {
+      const normalizedQuery = query.trim().toLowerCase();
+      const filteredPosts = normalizedQuery
+        ? posts.filter((post: { title: string; description: string; tags: string[]; href: string }) =>
+            [post.title, post.description, post.tags.join(' ')].join(' ').toLowerCase().includes(normalizedQuery)
+          )
+        : posts;
+
+      status.textContent = normalizedQuery
+        ? `${filteredPosts.length} results for "${query}".`
+        : `${posts.length} posts available.`;
+
+      results.innerHTML = filteredPosts
+        .map(
+          (post: { title: string; description: string; tags: string[]; href: string }) => `
+            <li>
+              <a href="${post.href}" class="block rounded-2xl border border-border p-5 transition hover:border-accent/40 hover:text-accent">
+                <div class="text-lg font-semibold text-foreground">${post.title}</div>
+                <p class="mt-2 text-sm text-foreground/75">${post.description}</p>
+                <p class="mt-3 text-xs uppercase tracking-wide text-foreground/60">${post.tags.join(' · ')}</p>
+              </a>
+            </li>
+          `
+        )
+        .join('');
+    };
+
+    render(initialQuery);
+
+    input.oninput = () => {
+      const query = input.value.trim();
+      if (query) {
+        params.set('q', query);
+      } else {
+        params.delete('q');
+      }
+      history.replaceState(history.state, '', `${window.location.pathname}${params.toString() ? `?${params}` : ''}`);
+      render(input.value);
+    };
+  }
+
+  mountSearch();
+  document.addEventListener('astro:after-swap', mountSearch);
+</script>
