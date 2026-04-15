@@ -20,8 +20,8 @@ const {
 } = Astro.props;
 
 const siteUrl = 'https://www.sakuraio.com';
-const canonicalUrl = new URL(Astro.url.pathname, siteUrl + '/blog').toString();
-const ogImage = image ? new URL(image, siteUrl + '/blog').toString() : `${siteUrl}/images/blog/featured.svg`;
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
+const ogImage = image ? new URL(image, siteUrl).toString() : `${siteUrl}/images/blog/featured.svg`;
 const publishedTimeStr = publishedTime ? publishedTime.toISOString() : new Date().toISOString();
 ---
 

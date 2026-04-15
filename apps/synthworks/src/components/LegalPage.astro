@@ -1,0 +1,182 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from './Navbar.astro';
+import Footer from './Footer.astro';
+import { loadTranslation, getLocaleFromPathname, t } from '../i18n/translator';
+
+interface Props {
+  page: 'privacy' | 'terms' | 'cookies';
+}
+
+const { page } = Astro.props;
+const locale = getLocaleFromPathname(Astro.url.pathname);
+const translationData = await loadTranslation(locale);
+
+const title = t(translationData, `legal.${page}.title`) || t(translationData, `footer.${page}`);
+const lastUpdated = t(translationData, 'legal.last_updated');
+
+const pageSections = {
+  privacy: [
+    {
+      titleKey: 'collect_title',
+      introKey: 'collect_intro',
+      itemKeys: ['collect_1', 'collect_2', 'collect_3', 'collect_4'],
+    },
+    {
+      titleKey: 'use_title',
+      introKey: 'use_intro',
+      itemKeys: ['use_1', 'use_2', 'use_3', 'use_4'],
+    },
+    {
+      titleKey: 'security_title',
+      descriptionKey: 'security_desc',
+    },
+    {
+      titleKey: 'rights_title',
+      introKey: 'rights_intro',
+      itemKeys: ['rights_1', 'rights_2', 'rights_3', 'rights_4'],
+    },
+    {
+      titleKey: 'contact_title',
+      descriptionKey: 'contact_desc',
+    },
+  ],
+  terms: [
+    {
+      titleKey: 'acceptance_title',
+      descriptionKey: 'acceptance_desc',
+    },
+    {
+      titleKey: 'service_title',
+      introKey: 'service_intro',
+      itemKeys: ['service_1', 'service_2', 'service_3', 'service_4', 'service_5'],
+    },
+    {
+      titleKey: 'user_title',
+      introKey: 'user_intro',
+      itemKeys: ['user_1', 'user_2', 'user_3', 'user_4', 'user_5'],
+    },
+    {
+      titleKey: 'ip_title',
+      descriptionKey: 'ip_desc',
+    },
+    {
+      titleKey: 'liability_title',
+      descriptionKey: 'liability_desc',
+    },
+    {
+      titleKey: 'termination_title',
+      descriptionKey: 'termination_desc',
+    },
+    {
+      titleKey: 'changes_title',
+      descriptionKey: 'changes_desc',
+    },
+  ],
+  cookies: [
+    {
+      titleKey: 'what_title',
+      descriptionKey: 'what_desc',
+    },
+    {
+      titleKey: 'types_title',
+    },
+    {
+      headingLevel: 'h3',
+      titleKey: 'essential_title',
+      introKey: 'essential_intro',
+      itemKeys: ['essential_1', 'essential_2', 'essential_3'],
+    },
+    {
+      headingLevel: 'h3',
+      titleKey: 'analytical_title',
+      introKey: 'analytical_intro',
+      itemKeys: ['analytical_1', 'analytical_2', 'analytical_3'],
+    },
+    {
+      headingLevel: 'h3',
+      titleKey: 'preference_title',
+      descriptionKey: 'preference_desc',
+    },
+    {
+      titleKey: 'third_title',
+      descriptionKey: 'third_desc',
+    },
+    {
+      titleKey: 'manage_title',
+      introKey: 'manage_intro',
+      itemKeys: ['manage_1', 'manage_2', 'manage_3'],
+      noteKey: 'manage_note',
+    },
+    {
+      titleKey: 'updates_title',
+      descriptionKey: 'updates_desc',
+    },
+  ],
+} as const;
+
+const sections = pageSections[page];
+---
+
+<Layout title={title}>
+  <Navbar />
+  <section class="pt-32 pb-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl md:text-5xl font-bold mb-8">
+        <span class="gradient-text">{title}</span>
+      </h1>
+      <div class="prose prose-lg prose-gray">
+        <p class="text-xl text-gray-600 mb-6">
+          {t(translationData, `legal.${page}.intro`)}
+        </p>
+
+        {sections.map((section) => {
+          const HeadingTag = section.headingLevel === 'h3' ? 'h3' : 'h2';
+          const headingClasses =
+            section.headingLevel === 'h3'
+              ? 'text-xl font-semibold mt-6 mb-3'
+              : 'text-2xl font-bold mt-8 mb-4';
+
+          return (
+            <>
+              <HeadingTag class={headingClasses}>
+                {t(translationData, `legal.${page}.${section.titleKey}`)}
+              </HeadingTag>
+
+              {section.introKey && (
+                <p class="text-gray-600 mb-4">
+                  {t(translationData, `legal.${page}.${section.introKey}`)}
+                </p>
+              )}
+
+              {section.descriptionKey && (
+                <p class="text-gray-600 mb-6">
+                  {t(translationData, `legal.${page}.${section.descriptionKey}`)}
+                </p>
+              )}
+
+              {section.itemKeys && (
+                <ul class="list-disc pl-6 text-gray-600 mb-6 space-y-2">
+                  {section.itemKeys.map((itemKey) => (
+                    <li>{t(translationData, `legal.${page}.${itemKey}`)}</li>
+                  ))}
+                </ul>
+              )}
+
+              {section.noteKey && (
+                <p class="text-gray-600 mb-6">
+                  {t(translationData, `legal.${page}.${section.noteKey}`)}
+                </p>
+              )}
+            </>
+          );
+        })}
+
+        <p class="text-sm text-gray-500">
+          {lastUpdated}
+        </p>
+      </div>
+    </div>
+  </section>
+  <Footer />
+</Layout>

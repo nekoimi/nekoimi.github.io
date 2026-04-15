@@ -3,8 +3,8 @@ import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
   site: 'https://www.sakuraio.com',
-  base: '/blog/',
+  base: '/',
   output: 'static',
-  outDir: '../../dist/blog',
+  outDir: '../../dist',
   integrations: [tailwind()],
 });

@@ -1,5 +1,5 @@
 ---
-import { t, loadTranslation, getPathnameFromLocale, getLocaleFromPathname, type Locale } from '../i18n/translator';
+import { t, loadTranslation, getPathnameFromLocale, getLocaleFromPathname } from '../i18n/translator';
 
 const locale = getLocaleFromPathname(Astro.url.pathname);
 const translationData = await loadTranslation(locale);
@@ -8,13 +8,14 @@ const navLinks = [
   { labelKey: 'nav.home', href: getPathnameFromLocale(locale, '/') },
   { labelKey: 'nav.features', href: '#features' },
   { labelKey: 'nav.tools', href: '#tools' },
-  { labelKey: 'nav.docs', href: getPathnameFromLocale(locale, '/docs') },
+  { labelKey: 'nav.docs', href: '/docs/' },
   { labelKey: 'nav.pricing', href: '#pricing' },
   { labelKey: 'nav.contact', href: '#contact' },
 ];
 
-const switchLang = locale === 'en' ? 'Switch Language' : '切换语言';
 const ctaText = locale === 'en' ? 'Get Started' : '开始使用';
+const englishHomepage = getPathnameFromLocale('en', '/');
+const chineseHomepage = getPathnameFromLocale('zh', '/');
 ---
 
 <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
@@ -50,13 +51,13 @@ const ctaText = locale === 'en' ? 'Get Started' : '开始使用';
 
           <div class="absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
             <a
-              href="/"
+              href={englishHomepage}
               class="block px-4 py-2 text-sm transition-colors text-gray-700 hover:bg-gray-50"
             >
               <span class="mr-2">🇺🇸</span>English
             </a>
             <a
-              href="/zh/"
+              href={chineseHomepage}
               class="block px-4 py-2 text-sm transition-colors text-gray-700 hover:bg-gray-50"
             >
               <span class="mr-2">🇨🇳</span>中文

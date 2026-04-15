@@ -8,9 +8,11 @@
 
 ## 🌌 在线演示
 
-* **主站**: https://www.sakuraio.com
-* **文档**: https://www.sakura.io.com/docs
-* **工具**: https://www.sakura.io.com/tools
+* **博客**: https://www.sakuraio.com
+* **产品主页**: https://www.sakuraio.com/synthworks/
+* **产品主页（中文）**: https://www.sakuraio.com/synthworks/zh/
+* **文档**: https://www.sakuraio.com/docs
+* **工具**: https://www.sakuraio.com/tools
 
 ---
 
@@ -36,19 +38,17 @@
 ## 🧱 项目结构
 
 ```
-sakuraio-web/
+nekoimi.github.io/
 ├── apps/
-│   ├── home/      # Astro 主站 (营销页面)
+│   ├── synthworks/ # Astro 产品主页
+│   ├── blog/      # Astro 博客（站点根路径）
 │   ├── docs/      # VitePress 文档系统
-│   ├── tools/     # 工具 UI (Vue + Vite)
-│
-├── packages/      # 共享模块 (未来使用)
+│   └── tools/     # 工具 UI (Vue + Vite)
 ├── .github/       # CI/CD 工作流
+├── CNAME
 ├── package.json
-├── pnpm-workspace.yaml
+└── pnpm-workspace.yaml
 ```
-
-`
 
 ---
 
@@ -80,9 +80,15 @@ pnpm install
 ### 2. 启动开发服务器
 
 ```bash
-# 主站 (Astro)
-pnpm dev:home
+# 博客（根站）
+pnpm dev
 # 或
+pnpm dev:blog
+
+# 产品主页
+pnpm dev:synthworks
+
+# 可选别名
 pnpm dev:web
 
 # 文档
@@ -102,27 +108,30 @@ pnpm build
 
 ---
 
-### 4. 预览构建结果
+### 4. 预览单个应用
 
 ```bash
-pnpm preview
+pnpm --filter synthworks preview
+pnpm --filter blog preview
+pnpm --filter docs preview
+pnpm --filter tools preview
 ```
 
 ---
 
 ## 🌍 国际化
 
-SynthWorks 支持多语言结构：
+SynthWorks 产品主页支持多语言结构：
 
 ```
-/zh/    → 中文
-/en/    → 英文
+/synthworks/zh/ → 中文
+/synthworks/    → 英文
 ```
 
 文本内容通过 JSON 文件管理：
 
 ```
-apps/home/src/locales/
+apps/synthworks/src/i18n/
 ```
 
 ---

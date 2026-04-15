@@ -8,16 +8,32 @@ const translations: Record<string, 'en' | 'zh'> = {
 
 export const locales = ['en', 'zh'] as const;
 export type Locale = (typeof locales)[number];
+export const PRODUCT_BASE_PATH = '/synthworks';
+
+function normalizeProductPath(pathname: string): string {
+  if (!pathname || pathname === '/') {
+    return '/';
+  }
+
+  const withLeadingSlash = pathname.startsWith('/') ? pathname : `/${pathname}`;
+  return withLeadingSlash.endsWith('/') ? withLeadingSlash : `${withLeadingSlash}/`;
+}
 
 export function getPathnameFromLocale(locale: Locale, pathname: string): string {
+  const normalizedPath = normalizeProductPath(pathname);
+
   if (locale === 'en') {
-    return pathname;
+    return `${PRODUCT_BASE_PATH}${normalizedPath}`;
   }
-  return `/${locale}${pathname}`;
+
+  return `${PRODUCT_BASE_PATH}/zh${normalizedPath}`;
 }
 
 export function getLocaleFromPathname(pathname: string): Locale {
   const segments = pathname.split('/').filter(Boolean);
+  if (segments[0] === 'synthworks' && segments[1] === 'zh') {
+    return 'zh';
+  }
   if (segments.length > 0 && (segments[0] === 'en' || segments[0] === 'zh')) {
     return segments[0] as Locale;
   }

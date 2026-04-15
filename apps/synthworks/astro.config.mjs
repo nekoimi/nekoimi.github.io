@@ -3,8 +3,8 @@ import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
   site: 'https://www.sakuraio.com',
-  base: '/',
+  base: '/synthworks/',
   output: 'static',
-  outDir: '../../dist',
+  outDir: '../../dist/synthworks',
   integrations: [tailwind()],
 });

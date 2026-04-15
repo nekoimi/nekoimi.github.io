@@ -1,86 +1,73 @@
-# 🚀 SynthWorks
+# SynthWorks
 
-> A modern AI automation platform built for creators and developers.
+> A mixed GitHub Pages monorepo for the SynthWorks product site, blog, docs, and tools.
 
-**SynthWorks** is a unified platform for AI-powered tools and workflow automation — designed to simplify complex tasks like video processing, speech synthesis, OCR, and more.
+## Live URLs
 
----
+- Blog: `https://www.sakuraio.com/`
+- Product site: `https://www.sakuraio.com/synthworks/`
+- Product site (Chinese): `https://www.sakuraio.com/synthworks/zh/`
+- Docs: `https://www.sakuraio.com/docs/`
+- Tools: `https://www.sakuraio.com/tools/`
 
-## 🌌 Live Demo
+## Project Structure
 
-* **Main Site**: https://www.sakuraio.com
-* **Docs**: https://www.sakuraio.com/docs
-* **Tools**: https://www.sakuraio.com/tools
-
----
-
-## ✨ Features
-
-* 🎭 **AI Face Swap**
-  High-quality face swapping for video and images.
-
-* 🔊 **Text-to-Speech (TTS)**
-  Natural and expressive voice generation.
-
-* 📄 **OCR Processing**
-  Batch document recognition and data extraction.
-
-* 🎬 **Video Automation**
-  Automated editing, trimming, and ad removal.
-
-* ⚙️ **Workflow Automation**
-  Combine multiple AI tools into a seamless pipeline.
-
----
-
-## 🧱 Project Structure
-
-```
-sakuraio-web/
+```text
+nekoimi.github.io/
 ├── apps/
-│   ├── home/      # Astro main site (marketing page)
-│   ├── docs/      # VitePress documentation
-│   ├── tools/     # Tool UI (Vue + Vite)
-│
-├── packages/      # Shared modules (future use)
+│   ├── synthworks/ # Astro product site, published under /synthworks/
+│   ├── blog/       # Astro blog, published at /
+│   ├── docs/      # VitePress docs, published under /docs/
+│   └── tools/     # Vue + Vite tools app, published under /tools/
 ├── .github/       # CI/CD workflows
+├── CNAME
 ├── package.json
-├── pnpm-workspace.yaml
+└── pnpm-workspace.yaml
 ```
 
----
+## How It Works
 
-## 🛠 Tech Stack
+This repository builds several static apps into one final `dist/` directory for GitHub Pages:
+
+- `apps/blog` writes the root site to `dist/`
+- `apps/synthworks` writes the product site to `dist/synthworks`
+- `apps/docs` writes to `dist/docs`
+- `apps/tools` writes to `dist/tools`
+
+The blog owns the site root `/`, while the product experience lives under `/synthworks/`.
+
+## Tech Stack
 
 | Technology | Purpose |
-|------------|---------|
-| **Astro** | Static site generator |
-| **VitePress** | Documentation system |
-| **Vue + Vite** | Interactive tools UI |
-| **i18next** | Internationalization |
-| **Tailwind CSS** | Styling framework |
-| **pnpm** | Monorepo management |
-| **GitHub Pages** | Hosting & deployment |
-| **Cloudflare** | DNS & CDN acceleration |
+| --- | --- |
+| Astro | Product site and blog |
+| VitePress | Documentation |
+| Vue + Vite | Tools UI |
+| i18next | Product-site localization |
+| Tailwind CSS | Styling |
+| pnpm workspace | Monorepo management |
+| GitHub Pages | Hosting and deployment |
 
----
+## Getting Started
 
-## 🚀 Getting Started
-
-### 1. Install dependencies
+### Install dependencies
 
 ```bash
 pnpm install
 ```
 
----
-
-### 2. Run development servers
+### Run apps locally
 
 ```bash
-# Main site (Astro)
-pnpm dev:home
+# Blog (root site)
+pnpm dev
 # or
+pnpm dev:blog
+
+# Product site (apps/synthworks)
+pnpm dev:synthworks
+
+# Optional alias
 pnpm dev:web
 
 # Docs
@@ -90,90 +77,55 @@ pnpm dev:docs
 pnpm dev:tools
 ```
 
----
-
-### 3. Build all apps
+### Build everything
 
 ```bash
 pnpm build
 ```
 
----
+### Preview individual apps
 
-### 4. Preview build
+Run preview commands from each app directory when needed:
 
 ```bash
-pnpm preview
+pnpm --filter synthworks preview
+pnpm --filter blog preview
+pnpm --filter docs preview
+pnpm --filter tools preview
 ```
 
----
+## Product Site Routing
 
-## 🌍 Internationalization
+The SynthWorks product site uses these routes:
 
-SynthWorks supports multi-language structure:
-
-```
-/zh/    → Chinese
-/en/    → English
-```
-
-Text content is managed via JSON files:
-
-```
-apps/home/src/locales/
+```text
+/synthworks/             -> English landing page
+/synthworks/zh/          -> Chinese landing page
+/synthworks/legal/...    -> English legal pages
+/synthworks/zh/legal/... -> Chinese legal pages
 ```
 
----
+Product-site translations live in:
 
-## ⚙️ Deployment
+```text
+apps/synthworks/src/i18n/
+```
 
-Deployment is fully automated via GitHub Actions:
+## Deployment
 
-1. Push to `main` or `master` branch
-2. Build all apps into `/dist`
-3. Deploy to GitHub Pages
+Deployment is automated with GitHub Actions:
 
----
+1. Push to `main` or `master`
+2. Run `pnpm build`
+3. Upload the generated `dist/` directory
+4. Deploy the artifact to GitHub Pages
 
-## 📌 Roadmap
+The workflow is defined in `.github/workflows/deploy.yml`.
 
-- [ ] WrapBox plugin system integration
-- [ ] Online AI tool execution (cloud mode)
-- [ ] User authentication & dashboard
-- [ ] Paid plans / SaaS features
-- [ ] API access for developers
+## Contributing
 
----
+Issues and pull requests are welcome.
 
-## 💡 Vision
+## License
 
-SynthWorks aims to become a **modular AI automation platform** where:
-
-* Tools are composable
-* Workflows are programmable
-* AI is accessible to everyone
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome!
-
-Feel free to open issues or submit pull requests.
-
----
-
-## 📬 Contact
-
-* **Email**: [your@email.com](mailto:your@email.com)
-* **GitHub**: https://github.com/nekoimi
-
----
-
-## 📄 License
-
-MIT License
-
----
-
-⭐ If you find this project useful, consider giving it a star!
+MIT

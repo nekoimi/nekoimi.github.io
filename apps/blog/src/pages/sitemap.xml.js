@@ -2,7 +2,7 @@ import { getCollection } from 'astro:content';
 
 export async function GET(context) {
   const posts = await getCollection('blog');
-  const siteUrl = 'https://www.sakuraio.com/blog';
+  const siteUrl = 'https://www.sakuraio.com';
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

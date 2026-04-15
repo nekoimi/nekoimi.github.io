@@ -1,0 +1,30 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from './Navbar.astro';
+import Hero from './Hero.astro';
+import Stats from './Stats.astro';
+import Features from './Features.astro';
+import Showcase from './Showcase.astro';
+import ToolsIntro from './ToolsIntro.astro';
+import UseCases from './UseCases.astro';
+import Testimonials from './Testimonials.astro';
+import Footer from './Footer.astro';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<Layout title={title}>
+  <Navbar />
+  <Hero />
+  <Stats />
+  <Features />
+  <Showcase />
+  <ToolsIntro />
+  <UseCases />
+  <Testimonials />
+  <Footer />
+</Layout>

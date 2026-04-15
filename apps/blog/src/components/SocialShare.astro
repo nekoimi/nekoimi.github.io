@@ -1,7 +1,7 @@
 ---
 const { url = Astro.url } = Astro;
 
-const shareUrl = new URL(url.href, 'https://www.sakuraio.com/blog').toString();
+const shareUrl = new URL(url.href, 'https://www.sakuraio.com').toString();
 const shareText = encodeURIComponent('Check out this article on SynthWorks Blog');
 ---
 

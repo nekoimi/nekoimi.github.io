@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.sakuraio.com/blog/sitemap.xml
+Sitemap: https://www.sakuraio.com/sitemap.xml
