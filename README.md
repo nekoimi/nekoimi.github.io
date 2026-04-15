@@ -1,130 +1,81 @@
-# SynthWorks
+# 个人站点仓库
 
-> A mixed GitHub Pages monorepo for the SynthWorks product site, blog, docs, and tools.
+这个仓库是我的个人 GitHub Pages 仓库，主要放一些博客内容、工具页面、文档，以及单独的项目产品主页。
 
-## Live URLs
+## 线上地址
 
-- Blog: `https://www.sakuraio.com/`
-- Product site: `https://www.sakuraio.com/synthworks/`
-- Product site (Chinese): `https://www.sakuraio.com/synthworks/zh/`
-- Docs: `https://www.sakuraio.com/docs/`
-- Tools: `https://www.sakuraio.com/tools/`
+- 博客：`https://www.sakuraio.com/`
+- 产品主页：`https://www.sakuraio.com/synthworks/`
+- 文档：`https://www.sakuraio.com/docs/`
+- 工具：`https://www.sakuraio.com/tools/`
 
-## Project Structure
+## 项目结构
 
 ```text
 nekoimi.github.io/
 ├── apps/
-│   ├── synthworks/ # Astro product site, published under /synthworks/
-│   ├── blog/       # Astro blog, published at /
-│   ├── docs/      # VitePress docs, published under /docs/
-│   └── tools/     # Vue + Vite tools app, published under /tools/
-├── .github/       # CI/CD workflows
+│   ├── blog/         # 博客，发布到站点根路径 /
+│   ├── synthworks/   # 项目产品主页，发布到 /synthworks/
+│   ├── docs/         # 文档站点，发布到 /docs/
+│   └── tools/        # 工具页面，发布到 /tools/
+├── .github/          # GitHub Actions 工作流
 ├── CNAME
 ├── package.json
 └── pnpm-workspace.yaml
 ```
 
-## How It Works
+## 本地开发
 
-This repository builds several static apps into one final `dist/` directory for GitHub Pages:
-
-- `apps/blog` writes the root site to `dist/`
-- `apps/synthworks` writes the product site to `dist/synthworks`
-- `apps/docs` writes to `dist/docs`
-- `apps/tools` writes to `dist/tools`
-
-The blog owns the site root `/`, while the product experience lives under `/synthworks/`.
-
-## Tech Stack
-
-| Technology | Purpose |
-| --- | --- |
-| Astro | Product site and blog |
-| VitePress | Documentation |
-| Vue + Vite | Tools UI |
-| i18next | Product-site localization |
-| Tailwind CSS | Styling |
-| pnpm workspace | Monorepo management |
-| GitHub Pages | Hosting and deployment |
-
-## Getting Started
-
-### Install dependencies
+安装依赖：
 
 ```bash
 pnpm install
 ```
 
-### Run apps locally
+启动各个应用：
 
 ```bash
-# Blog (root site)
+# 博客
 pnpm dev
-# or
+# 或
 pnpm dev:blog
 
-# Product site (apps/synthworks)
+# 产品主页
 pnpm dev:synthworks
 
-# Optional alias
-pnpm dev:web
-
-# Docs
+# 文档
 pnpm dev:docs
 
-# Tools
+# 工具
 pnpm dev:tools
 ```
 
-### Build everything
+## 构建
+
+构建整个站点：
 
 ```bash
 pnpm build
 ```
 
-### Preview individual apps
-
-Run preview commands from each app directory when needed:
+如需单独预览某个应用，可以使用：
 
 ```bash
-pnpm --filter synthworks preview
 pnpm --filter blog preview
+pnpm --filter synthworks preview
 pnpm --filter docs preview
 pnpm --filter tools preview
 ```
 
-## Product Site Routing
+## 部署
 
-The SynthWorks product site uses these routes:
+仓库通过 GitHub Actions 自动构建并部署到 GitHub Pages，构建产物统一输出到 `dist/`。
 
-```text
-/synthworks/             -> English landing page
-/synthworks/zh/          -> Chinese landing page
-/synthworks/legal/...    -> English legal pages
-/synthworks/zh/legal/... -> Chinese legal pages
-```
-
-Product-site translations live in:
+工作流文件：
 
 ```text
-apps/synthworks/src/i18n/
+.github/workflows/deploy.yml
 ```
-
-## Deployment
-
-Deployment is automated with GitHub Actions:
-
-1. Push to `main` or `master`
-2. Run `pnpm build`
-3. Upload the generated `dist/` directory
-4. Deploy the artifact to GitHub Pages
-
-The workflow is defined in `.github/workflows/deploy.yml`.
-
-## Contributing
-
-Issues and pull requests are welcome.
 
 ## License
 
