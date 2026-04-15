@@ -11,29 +11,50 @@ const encodedUrl = encodeURIComponent(url);
 const links = [
   {
     name: 'X',
+    label: 'Share on X',
+    icon: 'x',
     href: `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`,
   },
   {
     name: 'LinkedIn',
+    label: 'Share on LinkedIn',
+    icon: 'linkedin',
     href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
   },
   {
     name: 'Copy Link',
+    label: 'Copy link',
+    icon: 'copy',
     href: url,
   },
 ];
+
+function renderIcon(icon: string) {
+  switch (icon) {
+    case 'x':
+      return `<svg viewBox="0 0 24 24" class="h-4 w-4 fill-current"><path d="M18.901 1.153h3.68l-8.04 9.19 9.458 12.504h-7.406l-5.8-7.584-6.636 7.584H.476l8.6-9.83L0 1.154h7.594l5.243 6.932 6.064-6.932Zm-1.29 19.494h2.04L6.486 3.24H4.298l13.313 17.407Z"></path></svg>`;
+    case 'linkedin':
+      return `<svg viewBox="0 0 24 24" class="h-4 w-4 fill-current"><path d="M6.94 8.5H3.56V20h3.38V8.5ZM5.25 3A1.97 1.97 0 0 0 3.28 4.97c0 1.08.88 1.97 1.97 1.97a1.97 1.97 0 1 0 0-3.94ZM20.72 12.88c0-3.33-1.78-4.88-4.16-4.88-1.92 0-2.78 1.06-3.26 1.8V8.5H9.92c.04.86 0 11.5 0 11.5h3.38v-6.42c0-.34.03-.68.12-.92.27-.68.9-1.38 1.95-1.38 1.38 0 1.93 1.04 1.93 2.57V20h3.42l-.01-7.12Z"></path></svg>`;
+    case 'copy':
+      return `<svg viewBox="0 0 24 24" class="h-4 w-4 fill-current"><path d="M16 1H6a2 2 0 0 0-2 2v12h2V3h10V1Zm3 4H10a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Zm0 16H10V7h9v14Z"></path></svg>`;
+    default:
+      return '';
+  }
+}
 ---
 
 <div class="flex flex-wrap items-center gap-3">
   {links.map(link => (
     <a
       href={link.href}
-      class="share-link inline-flex rounded-md border border-border px-3 py-1.5 text-sm transition hover:border-accent/40 hover:text-accent"
+      class="share-link inline-flex h-10 w-10 items-center justify-center rounded-md border border-border text-foreground/75 transition hover:-translate-y-0.5 hover:border-accent/40 hover:text-accent"
       target={link.name === 'Copy Link' ? undefined : '_blank'}
       rel={link.name === 'Copy Link' ? undefined : 'noreferrer'}
       data-copy-link={link.name === 'Copy Link' ? url : undefined}
+      aria-label={link.label}
+      title={link.name}
+      set:html={renderIcon(link.icon)}
     >
-      {link.name}
     </a>
   ))}
 </div>
@@ -47,10 +68,14 @@ const links = [
           const value = node.dataset.copyLink;
           if (!value) return;
           await navigator.clipboard.writeText(value);
-          const originalText = node.textContent;
-          node.textContent = 'Copied';
+          const originalLabel = node.getAttribute('aria-label');
+          node.setAttribute('aria-label', 'Copied');
+          node.setAttribute('title', 'Copied');
           window.setTimeout(() => {
-            node.textContent = originalText;
+            if (originalLabel) {
+              node.setAttribute('aria-label', originalLabel);
+            }
+            node.setAttribute('title', 'Copy Link');
           }, 1200);
         };
       }

@@ -1,5 +1,16 @@
 ---
 import { SOCIALS } from '../constants';
+
+function renderIcon(icon: string) {
+  switch (icon) {
+    case 'github':
+      return `<svg viewBox="0 0 24 24" class="h-4 w-4 fill-current"><path d="M12 .5a12 12 0 0 0-3.794 23.39c.6.11.82-.26.82-.58v-2.02c-3.338.725-4.042-1.61-4.042-1.61-.546-1.386-1.334-1.755-1.334-1.755-1.09-.744.082-.73.082-.73 1.205.085 1.84 1.238 1.84 1.238 1.07 1.835 2.807 1.305 3.492.998.108-.775.418-1.305.762-1.605-2.665-.304-5.467-1.332-5.467-5.928 0-1.31.468-2.381 1.236-3.22-.123-.304-.536-1.529.117-3.186 0 0 1.008-.323 3.3 1.23a11.52 11.52 0 0 1 6.008 0c2.29-1.553 3.297-1.23 3.297-1.23.655 1.657.242 2.882.119 3.186.77.839 1.234 1.91 1.234 3.22 0 4.608-2.807 5.62-5.48 5.92.43.372.814 1.102.814 2.222v3.293c0 .323.216.694.825.576A12 12 0 0 0 12 .5Z"></path></svg>`;
+    case 'rss':
+      return `<svg viewBox="0 0 24 24" class="h-4 w-4 fill-current"><path d="M6.18 17.82a1.64 1.64 0 1 1 0-3.28 1.64 1.64 0 0 1 0 3.28ZM4.54 9.54v3.27a6.65 6.65 0 0 1 6.65 6.65h3.27c0-5.48-4.44-9.92-9.92-9.92Zm0-5v3.27c8.24 0 14.92 6.68 14.92 14.92h3.27c0-10.05-8.14-18.19-18.19-18.19Z"></path></svg>`;
+    default:
+      return '';
+  }
+}
 ---
 
 <ul class="flex flex-wrap items-center gap-3">
@@ -7,11 +18,13 @@ import { SOCIALS } from '../constants';
     <li>
       <a
         href={item.href}
-        class="inline-flex rounded-md border border-border px-3 py-1.5 text-sm transition hover:border-accent/40 hover:text-accent"
+        class="inline-flex h-10 w-10 items-center justify-center rounded-md border border-border text-foreground/75 transition hover:-translate-y-0.5 hover:border-accent/40 hover:text-accent"
         target={item.href.startsWith('http') ? '_blank' : undefined}
         rel={item.href.startsWith('http') ? 'noreferrer' : undefined}
+        aria-label={item.label}
+        title={item.name}
+        set:html={renderIcon(item.icon)}
       >
-        {item.name}
       </a>
     </li>
   ))}

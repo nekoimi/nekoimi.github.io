@@ -55,11 +55,11 @@ html {
   }
 
   .app-card {
-    @apply rounded-2xl border border-border/90 bg-background/95 shadow-sm transition hover:border-accent/40 hover:shadow-md;
+    @apply rounded-2xl border border-border/90 bg-background/95 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-md;
   }
 
   .app-prose {
-    @apply prose prose-neutral max-w-none;
+    @apply prose prose-neutral max-w-none text-[1.04rem] leading-8 prose-headings:font-semibold prose-headings:tracking-tight prose-strong:text-foreground prose-a:font-medium prose-a:text-accent prose-a:no-underline prose-code:text-foreground prose-pre:rounded-xl prose-hr:border-border;
   }
 }
 
@@ -73,6 +73,33 @@ html {
 
 .app-prose code {
   word-break: break-word;
+}
+
+.app-prose a {
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 0.22em;
+}
+
+.app-prose p,
+.app-prose li {
+  color: rgb(var(--foreground) / 0.88);
+}
+
+.app-prose blockquote {
+  @apply rounded-r-xl border-l-4 border-accent/60 bg-muted/35 py-1;
+}
+
+.app-prose hr {
+  @apply my-10 border-dashed;
+}
+
+.app-prose img {
+  @apply rounded-2xl border border-border/70;
+}
+
+.app-prose table {
+  @apply block w-full overflow-x-auto;
 }
 
 .app-prose :where(h2, h3, h4, h5, h6) {
