@@ -4,10 +4,10 @@
 
 ## 线上地址
 
-- 博客：`https://www.sakuraio.com/`
-- 产品主页：`https://www.sakuraio.com/synthworks/`
-- 文档：`https://www.sakuraio.com/docs/`
-- 工具：`https://www.sakuraio.com/tools/`
+- 博客：`https://pages.sakuraio.com/`
+- 产品主页：`https://pages.sakuraio.com/synthworks/`
+- 文档：`https://pages.sakuraio.com/docs/`
+- 工具：`https://pages.sakuraio.com/tools/`
 
 ## 项目结构
 
